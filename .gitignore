@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+CACHE
+output.css
 
 # C extensions
 *.so
@@ -108,3 +110,5 @@ static_collected
 
 # Exclude machine-specific vs code settings
 .vscode/settings.json
+
+node_modules
