@@ -8,7 +8,7 @@ Descrição temporária
 Clone o projeto
 
 ```bash
- git clone https://link-para-o-projeto
+ git clone  https://github.com/Peagah-Vieira/Django-Dashboard.git
 ```
 
 Crie um ambiente virtual
@@ -28,16 +28,28 @@ Crie um ambiente virtual
  .venv\scripts\activate
 ```
 
+Atualize o pip
+
+```bash
+ py -m pip install --upgrade pip
+```
+
 Instale as dependências
 
 ```bash
  pip install -r requirements.txt
 ```
 
+Realize as migrações
+
+```bash
+ py manage.py migrate
+```
+
 Inicie o servidor
 
 ```bash
- python manage.py runserver
+ py manage.py runserver
 ```
 ## Aprendizados
 
