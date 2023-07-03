@@ -1,17 +1,16 @@
-
-# Nome Temporário
+# Temporary Name
 
 Project carried out to put into practice the knowledge learned.
 
-## Rodando localmente
+## Running locally
 
-Clone o projeto
+Clone the project
 
 ```bash
  git clone  https://github.com/Peagah-Vieira/Django-Dashboard.git
 ```
 
-Crie um ambiente virtual
+Create a virtual environment
 
 ```bash
  # Linux
@@ -28,49 +27,49 @@ Crie um ambiente virtual
  .venv\scripts\activate
 ```
 
-Atualize o pip
+Update the pip
 
 ```bash
  py -m pip install --upgrade pip
 ```
 
-Instale as dependências
+Install the dependencies
 
 ```bash
  pip install -r requirements.txt
  npm install
 ```
 
-Compile o Tailwind CSS
+Compile the Tailwind CSS
 
 ```bash
  npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
 ```
 
-Realize as migrações
+Perform the migrations
 
 ```bash
  py manage.py migrate
 ```
 
-Inicie o servidor
+Start the server
 
 ```bash
  py manage.py runserver
 ```
-## Aprendizados
+## Learnings
 
-Conceitos de boas práticas:
+Good practice concepts:
 
 (https://learndjango.com/tutorials/django-best-practices-projects-vs-apps).
 
 
-Arquivo de requisitos do Python:
+Python requirements file:
 
 (https://learnpython.com/blog/python-requirements-file/)
 
 
-## Documentação
+## Documentation
 
 [Python](https://www.python.org)
 
