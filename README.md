@@ -38,6 +38,13 @@ Instale as dependências
 
 ```bash
  pip install -r requirements.txt
+ npm install
+```
+
+Compile o Tailwind CSS
+
+```bash
+ npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
 ```
 
 Realize as migrações
@@ -68,6 +75,8 @@ Arquivo de requisitos do Python:
 [Python](https://www.python.org)
 
 [Django](https://www.djangoproject.com)
+
+[Tailwind + Flowbite](https://flowbite.com/docs/getting-started/django/)
 
 
 
