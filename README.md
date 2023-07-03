@@ -1,7 +1,7 @@
 
 # Nome Temporário
 
-Descrição temporária
+Project carried out to put into practice the knowledge learned.
 
 ## Rodando localmente
 
