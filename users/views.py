@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import RegisterForm
 
 
 def login_view(request):
@@ -6,4 +7,7 @@ def login_view(request):
 
 
 def register_view(request):
-    return render(request, 'register_view.html')
+    form = RegisterForm()
+    return render(request, 'register_view.html', context={
+        'form': form
+    })
