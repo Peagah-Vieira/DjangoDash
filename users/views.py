@@ -6,4 +6,4 @@ def login_view(request):
 
 
 def register_view(request):
-    return render(render, 'register_view.html')
+    return render(request, 'register_view.html')
