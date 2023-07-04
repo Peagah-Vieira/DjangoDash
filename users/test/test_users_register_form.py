@@ -1,6 +1,7 @@
 from django.test import TestCase
 from parameterized import parameterized
 from users.forms import RegisterForm
+from django.urls import reverse
 
 
 class UsersRegisterForm(TestCase):
@@ -25,3 +26,7 @@ class UsersRegisterForm(TestCase):
         form = RegisterForm()
         current_label = form[field].label
         self.assertEqual(current_label, label)
+
+    def test_registration_create_request_type_get_returns_404(self):
+        response = self.client.get(reverse('users:register_create'))
+        self.assertEqual(response.status_code, 404)
