@@ -68,6 +68,10 @@ Python requirements file:
 
 (https://learnpython.com/blog/python-requirements-file/)
 
+Write and run tests:
+
+(https://docs.djangoproject.com/en/4.2/topics/testing/overview/)
+
 Test-Driven Development:
 
 (https://www.browserstack.com/guide/what-is-test-driven-development)
