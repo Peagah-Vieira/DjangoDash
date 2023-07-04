@@ -47,16 +47,16 @@ def login_create(request):
 
     if form.is_valid():
         authenticated_user = authenticate(
-            username=form.cleaned_data.get('username', ''),
-            password=form.cleaned_data.get('password', ''),
+            username=form.cleaned_data.get('username'),
+            password=form.cleaned_data.get('password'),
         )
 
-        if authenticated_user is not None:
-            messages.success(request, 'Your are logged in.')
+        if authenticated_user:
+            messages.success(request, 'You are logged in.')
             login(request, authenticated_user)
         else:
-            messages.error(request, 'Invalid credentials')
+            messages.error(request, 'Invalid username or password.')
     else:
-        messages.error(request, 'Invalid username or password')
+        messages.error(request, 'Invalid credentials.')
 
     return redirect(reverse('users:login'))
