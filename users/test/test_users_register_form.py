@@ -14,3 +14,14 @@ class UsersRegisterForm(TestCase):
         form = RegisterForm()
         current_placeholder = form[field].field.widget.attrs['placeholder']
         self.assertEqual(current_placeholder, placeholder)
+
+    @parameterized.expand([
+        ('username', 'Username'),
+        ('email', 'Email'),
+        ('password', 'Password'),
+        ('confirm_password', 'Confirm password'),
+    ])
+    def test_fields_label(self, field, label):
+        form = RegisterForm()
+        current_label = form[field].label
+        self.assertEqual(current_label, label)
