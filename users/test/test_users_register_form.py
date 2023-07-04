@@ -30,3 +30,7 @@ class UsersRegisterForm(TestCase):
     def test_registration_create_request_type_get_returns_404(self):
         response = self.client.get(reverse('users:register_create'))
         self.assertEqual(response.status_code, 404)
+
+    def test_login_create_request_type_get_returns_404(self):
+        response = self.client.get(reverse('users:login_create'))
+        self.assertEqual(response.status_code, 404)

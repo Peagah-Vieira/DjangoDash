@@ -4,10 +4,6 @@ from django.http import Http404
 from django.urls import reverse
 
 
-def login_view(request):
-    return render(request, 'login_view.html')
-
-
 def register_view(request):
     form = RegisterForm()
     return render(request, 'register_view.html', context={
@@ -26,3 +22,14 @@ def register_create(request):
         return redirect(reverse('users:login'))
 
     return redirect('users:register')
+
+
+def login_view(request):
+    return render(request, 'login_view.html')
+
+
+def login_create(request):
+    if not request.POST:
+        raise Http404()
+
+    return redirect(reverse('users:login'))
