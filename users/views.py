@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import RegisterForm
+from django.http import Http404
+from django.urls import reverse
 
 
 def login_view(request):
@@ -11,3 +13,16 @@ def register_view(request):
     return render(request, 'register_view.html', context={
         'form': form
     })
+
+
+def register_create(request):
+    if not request.POST:
+        raise Http404()
+
+    form = RegisterForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+        return redirect(reverse('users:login'))
+
+    return redirect('users:register')

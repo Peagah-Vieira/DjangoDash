@@ -1,8 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'password',
+        ]
+
     username = forms.CharField(
         label='Username',
         widget=forms.TextInput(attrs={
@@ -51,10 +60,14 @@ class RegisterForm(forms.ModelForm):
         required=True,
     )
 
-    class Meta:
-        model = User
-        fields = [
-            'username',
-            'email',
-            'password'
-        ]
+    def clean_email(self):
+        email = self.cleaned_data.get('email', '')
+        email_registered = User.objects.filter(email=email).exists()
+
+        if email_registered:
+            raise ValidationError(
+                'User e-mail is already in use',
+                code='invalid',
+            )
+
+        return email
