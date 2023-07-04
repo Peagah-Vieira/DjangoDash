@@ -27,9 +27,9 @@ class UsersRegisterForm(TestCase):
         current_label = form[field].label
         self.assertEqual(current_label, label)
 
-    def test_registration_create_request_type_get_returns_404(self):
+    def test_registration_create_request_type_get_returns_302(self):
         response = self.client.get(reverse('users:register_create'))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 302)
 
     def test_login_create_request_type_get_returns_404(self):
         response = self.client.get(reverse('users:login_create'))

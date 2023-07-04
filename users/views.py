@@ -13,15 +13,19 @@ def register_view(request):
 
 def register_create(request):
     if not request.POST:
-        raise Http404()
+        return redirect('users:register')
 
-    form = RegisterForm(request.POST)
+    details = RegisterForm(request.POST)
 
-    if form.is_valid():
-        form.save()
+    if details.is_valid():
+        user = details.save(commit=False)
+        user.set_password(user.password)
+        user.save()
         return redirect(reverse('users:login'))
 
-    return redirect('users:register')
+    return render(request, 'register_view.html', context={
+        'form': details
+    })
 
 
 def login_view(request):
