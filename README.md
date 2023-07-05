@@ -57,6 +57,21 @@ Start the server
 ```bash
 py manage.py runserver
 ```
+
+## Rodando os testes
+
+To run the tests, run the following command
+
+```bash
+coverage run -m pytest 
+```
+
+Test percentage table (htmlcov/index.html)
+
+```bash
+coverage html
+```
+
 ## Learnings
 
 Good practice concepts:
