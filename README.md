@@ -58,7 +58,7 @@ Start the server
 py manage.py runserver
 ```
 
-## Rodando os testes
+## Running the tests
 
 To run the tests, run the following command
 
