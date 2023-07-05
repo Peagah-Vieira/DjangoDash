@@ -76,6 +76,10 @@ Test-Driven Development:
 
 (https://www.browserstack.com/guide/what-is-test-driven-development)
 
+Selenium:
+
+(https://django-selenium.readthedocs.io/en/latest/)
+
 ## Documentation
 
 [Python](https://www.python.org)
