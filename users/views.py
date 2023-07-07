@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView
+from django.views.generic import CreateView, View
 
 
 class RegisterView(CreateView):
@@ -31,35 +31,36 @@ class RegisterView(CreateView):
         return render(request, self.template_name, context=context)
 
 
-def login_view(request):
-    form = LoginForm()
-    return render(request, 'login_view.html', context={
-        'form': form,
-        'form_action': reverse('users:login_create')
-    })
+class LoginView(View):
+    form = LoginForm
+    template_name = 'login_view.html'
 
+    def get(self, request):
+        form = self.form()
+        context = {'form': form}
+        return render(request, self.template_name, context=context)
 
-def login_create(request):
-    if not request.POST:
-        raise Http404()
+    def post(self, request):
+        form = self.form(request.POST)
+        url = reverse_lazy('users:login')
 
-    form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            authenticated_user = authenticate(
+                username=username,
+                password=password
+            )
 
-    if form.is_valid():
-        authenticated_user = authenticate(
-            username=form.cleaned_data.get('username'),
-            password=form.cleaned_data.get('password'),
-        )
-
-        if authenticated_user:
-            messages.success(request, 'You are logged in.')
-            login(request, authenticated_user)
+            if authenticated_user:
+                messages.success(request, 'You are logged in.')
+                login(request, authenticated_user)
+            else:
+                messages.error(request, 'Invalid username or password.')
         else:
-            messages.error(request, 'Invalid username or password.')
-    else:
-        messages.error(request, 'Invalid credentials.')
+            messages.error(request, 'Invalid credentials.')
 
-    return redirect(reverse('users:login'))
+        return redirect(url)
 
 
 @login_required(login_url='users:login', redirect_field_name='next')

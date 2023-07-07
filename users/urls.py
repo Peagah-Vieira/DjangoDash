@@ -6,13 +6,8 @@ app_name = "users"
 urlpatterns = [
     path(
         'login/',
-        views.login_view,
+        views.LoginView.as_view(),
         name='login'
-    ),
-    path(
-        'login/create',
-        views.login_create,
-        name='login_create'
     ),
     path(
         'register/',

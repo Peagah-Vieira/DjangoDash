@@ -20,9 +20,7 @@
                         </button>
                     </form>
                 {% endif %}
-                <form class="space-y-4 md:space-y-6"
-                      action="{{ form_action }}"
-                      method="POST">
+                <form class="space-y-4 md:space-y-6" action="" method="POST">
                     {% csrf_token %}
                     {% for field in form %}
                         <div>
