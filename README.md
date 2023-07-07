@@ -40,6 +40,12 @@ pip install -r requirements.txt
 npm install
 ```
 
+Environment variables
+
+```bash
+SECRET_KEY = 'GENERATE A KEY'
+```
+
 Compile the Tailwind CSS
 
 ```bash
