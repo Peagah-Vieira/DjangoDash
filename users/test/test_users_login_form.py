@@ -12,15 +12,21 @@ class UsersLoginForm(TestCase):
         return super().setUp(*args, **kwargs)
 
     def test_users_can_login_succesfully(self):
+        login_url = reverse('users:login')
+        dashboard_url = reverse('dashboard:home')
+
         User.objects.create_user(
             username=self.form_data['username'],
             password=self.form_data['password'],
         )
 
-        url = reverse('users:login')
-        response = self.client.post(url, data=self.form_data, follow=True)
+        response = self.client.post(
+            login_url,
+            data=self.form_data,
+            follow=True,
+        )
 
-        self.assertIn('You are logged in.', response.content.decode('utf-8'))
+        self.assertRedirects(response, dashboard_url)
 
     def test_users_cant_login_succesfully(self):
         url = reverse('users:login')

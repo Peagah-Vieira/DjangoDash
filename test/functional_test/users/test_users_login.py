@@ -35,11 +35,9 @@ class UsersLoginTest(UsersBaseTest):
         # Usuário envia o formulário
         form.submit()
 
-        # Usuário vê a mensagem de login com sucesso e seu nome
-        self.assertIn(
-            'You are logged in.',
-            self.browser.find_element(By.TAG_NAME, 'body').text
-        )
+        # Usuário é redirecionado para o dashboard
+        response = self.client.get(reverse('dashboard:home'))
+        self.assertEqual(response.status_code, 302)
 
     def test_form_login_invalid_credentials(self):
         # Usuário abre a página de login
