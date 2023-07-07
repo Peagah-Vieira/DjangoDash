@@ -95,6 +95,10 @@ Selenium:
 
 (https://django-selenium.readthedocs.io/en/latest/)
 
+Class Based Views:
+
+(https://docs.djangoproject.com/en/4.2/topics/class-based-views/)
+
 ## Documentation
 
 [Python](https://www.python.org)
