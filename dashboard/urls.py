@@ -5,7 +5,7 @@ app_name = "dashboard"
 
 urlpatterns = [
     path(
-        'dashboard',
+        'dashboard/',
         views.DashboardView.as_view(),
         name='home'
     )
