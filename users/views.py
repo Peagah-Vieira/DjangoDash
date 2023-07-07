@@ -50,6 +50,20 @@ class LoginView(View):
     form = LoginForm
     template_name = 'login_view.html'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        url = reverse_lazy('dashboard:home')
+
+        if request.user.is_authenticated:
+            return redirect(url)
+
+        return super().dispatch(*args, **kwargs)
+
     def get(self, request):
         form = self.form()
         context = {'form': form}
@@ -68,8 +82,9 @@ class LoginView(View):
             )
 
             if authenticated_user:
-                messages.success(request, 'You are logged in.')
+                dashboard_url = reverse_lazy('dashboard:home')
                 login(request, authenticated_user)
+                return redirect(dashboard_url)
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
