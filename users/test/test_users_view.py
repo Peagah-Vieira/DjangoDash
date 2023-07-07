@@ -14,7 +14,10 @@ class UsersViewsTest(TestCase):
 
     def test_users_register_view(self):
         register_view = resolve(reverse('users:register'))
-        self.assertIs(register_view.func, views.register_view)
+        self.assertIs(
+            register_view.func.__name__,
+            views.RegisterView.as_view().__name__
+        )
 
     def test_users_register_view_status_code(self):
         response = self.client.get(reverse('users:register'))
