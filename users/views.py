@@ -41,6 +41,7 @@ class RegisterView(CreateView):
             user = form.save(commit=False)
             user.set_password(user.password)
             user.save()
+            messages.success(request, 'Successfully Registered')
             return redirect(url)
 
         return render(request, self.template_name, context=context)
