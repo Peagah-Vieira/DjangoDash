@@ -1,35 +1,34 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.http import Http404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
 
 
-def register_view(request):
-    form = RegisterForm()
-    return render(request, 'register_view.html', context={
-        'form': form,
-        'form_action': reverse('users:register_create')
-    })
+class RegisterView(CreateView):
+    form = RegisterForm
+    template_name = 'register_view.html'
 
+    def get(self, request):
+        form = self.form()
+        context = {'form': form}
+        return render(request, self.template_name, context=context)
 
-def register_create(request):
-    if not request.POST:
-        return redirect('users:register')
+    def post(self, request):
+        form = self.form(request.POST)
+        context = {'form': form}
+        url = reverse_lazy('users:login')
 
-    details = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(user.password)
+            user.save()
+            return redirect(url)
 
-    if details.is_valid():
-        user = details.save(commit=False)
-        user.set_password(user.password)
-        user.save()
-        return redirect(reverse('users:login'))
-
-    return render(request, 'register_view.html', context={
-        'form': details
-    })
+        return render(request, self.template_name, context=context)
 
 
 def login_view(request):
