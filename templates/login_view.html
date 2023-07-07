@@ -11,15 +11,6 @@
                         {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
                     </div>
                 {% endif %}
-                {% if user.is_authenticated %}
-                    <form action="{% url 'users:logout' %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit"
-                                class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                            click here to logout
-                        </button>
-                    </form>
-                {% endif %}
                 <form class="space-y-4 md:space-y-6" action="" method="POST">
                     {% csrf_token %}
                     {% for field in form %}
