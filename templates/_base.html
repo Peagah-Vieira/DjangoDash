@@ -23,6 +23,17 @@
     <body>
         {% block content %}
         {% endblock content %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    {% include "messages/success.html" %}
+                {% elif message.tags == 'error' %}
+                    {% include "messages/error.html" %}
+                {% elif message.tags == 'warning' %}
+                    {% include "messages/warning.html" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
     </body>
 </html>
