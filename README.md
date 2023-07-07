@@ -1,13 +1,13 @@
-# Temporary Name
+# Django Currency Converter
 
-Project carried out to put into practice the knowledge learned.
+A project made using Django, Currency Converter API, Tailwind.
 
 ## Running locally
 
 Clone the project
 
 ```bash
-git clone  https://github.com/Peagah-Vieira/Django-Dashboard.git
+git clone  https://github.com/Peagah-Vieira/Django-Curency-Converter
 ```
 
 Create a virtual environment
@@ -112,6 +112,8 @@ Class Based Views:
 [Django](https://www.djangoproject.com)
 
 [Tailwind + Flowbite](https://flowbite.com/docs/getting-started/django/)
+
+[Currency Converter API](https://rapidapi.com/solutionsbynotnull/api/currency-converter18/)
 
 
 
