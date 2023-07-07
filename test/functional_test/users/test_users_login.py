@@ -5,6 +5,12 @@ from django.urls import reverse
 
 
 class UsersLoginTest(UsersBaseTest):
+    def get_form(self):
+        return self.browser.find_element(
+            By.XPATH,
+            '/html/body/div/div/div/form'
+        )
+
     def test_user_valid_data_can_login_successfully(self):
         string_password = 'P@ssw0rd1'
 
@@ -17,10 +23,7 @@ class UsersLoginTest(UsersBaseTest):
         self.browser.get(self.live_server_url + reverse('users:login'))
 
         # Usuário vê o formulário de login
-        form = self.browser.find_element(
-            By.XPATH,
-            '/html/body/section/div/div/div/form'
-        )
+        form = self.get_form()
 
         username_field = self.browser.find_element(By.NAME, 'username')
         password_field = self.browser.find_element(By.NAME, 'password')
@@ -43,10 +46,7 @@ class UsersLoginTest(UsersBaseTest):
         self.browser.get(self.live_server_url + reverse('users:login'))
 
         # Usuário vê o formulário de login
-        form = self.browser.find_element(
-            By.XPATH,
-            '/html/body/section/div/div/div/form'
-        )
+        form = self.get_form()
 
         username_field = self.browser.find_element(By.NAME, 'username')
         password_field = self.browser.find_element(By.NAME, 'password')
@@ -69,10 +69,7 @@ class UsersLoginTest(UsersBaseTest):
         self.browser.get(self.live_server_url + reverse('users:login'))
 
         # Usuário vê o formulário de login
-        form = self.browser.find_element(
-            By.XPATH,
-            '/html/body/section/div/div/div/form'
-        )
+        form = self.get_form()
 
         username_field = self.browser.find_element(By.NAME, 'username')
         password_field = self.browser.find_element(By.NAME, 'password')
