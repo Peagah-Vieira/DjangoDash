@@ -17,13 +17,13 @@ class UsersLoginForm(TestCase):
             password=self.form_data['password'],
         )
 
-        url = reverse('users:login_create')
+        url = reverse('users:login')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertIn('You are logged in.', response.content.decode('utf-8'))
 
     def test_users_cant_login_succesfully(self):
-        url = reverse('users:login_create')
+        url = reverse('users:login')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertIn('Invalid username or password.',

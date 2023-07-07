@@ -6,7 +6,10 @@ from users import views
 class UsersViewsTest(TestCase):
     def test_users_login_view(self):
         login_view = resolve(reverse('users:login'))
-        self.assertIs(login_view.func, views.login_view)
+        self.assertIs(
+            login_view.func.__name__,
+            views.LoginView.as_view().__name__
+        )
 
     def test_users_login_view_status_code(self):
         response = self.client.get(reverse('users:login'))
