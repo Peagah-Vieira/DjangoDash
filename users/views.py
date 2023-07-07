@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.http import Http404
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, View
+from django.utils.decorators import method_decorator
 
 
 class RegisterView(CreateView):
@@ -63,11 +64,28 @@ class LoginView(View):
         return redirect(url)
 
 
-@login_required(login_url='users:login', redirect_field_name='next')
-def logout_view(request):
-    if not request.POST:
+@method_decorator(
+    login_required(
+        login_url='users:login',
+        redirect_field_name='next'
+    ),
+    name='dispatch'
+)
+class LogoutView(View):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
         raise Http404()
 
-    messages.success(request, 'Logged out successfully')
-    logout(request)
-    return redirect(reverse('users:login'))
+    def post(self, request):
+        url = reverse_lazy('users:login')
+        messages.success(request, 'Logged out successfully')
+        logout(request)
+        return redirect(url)
