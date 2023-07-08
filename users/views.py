@@ -94,6 +94,27 @@ class LoginView(View):
         return redirect(url)
 
 
+class RecoverView(View):
+    template_name = 'recover-password.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        url = reverse_lazy('dashboard:home')
+
+        if request.user.is_authenticated:
+            return redirect(url)
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
 @method_decorator(
     login_required(
         login_url='users:login',

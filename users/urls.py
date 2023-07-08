@@ -19,4 +19,9 @@ urlpatterns = [
         views.LogoutView.as_view(),
         name="logout"
     ),
+    path(
+        'recover-password/',
+        views.RecoverView.as_view(),
+        name="recover-password"
+    ),
 ]
