@@ -1,6 +1,6 @@
 # Django Customer Relationship Management
 
-Description
+A project for CRM made using Django and Tailwind.
 
 ## Running locally
 
