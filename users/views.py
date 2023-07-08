@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 
 class RegisterView(CreateView):
     form = RegisterForm
-    template_name = 'register_view.html'
+    template_name = 'users/register.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,7 +49,7 @@ class RegisterView(CreateView):
 
 class LoginView(View):
     form = LoginForm
-    template_name = 'login_view.html'
+    template_name = 'users/login.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -92,27 +92,6 @@ class LoginView(View):
             messages.error(request, 'Invalid credentials.')
 
         return redirect(url)
-
-
-class RecoverView(View):
-    template_name = 'recover-password.html'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def setup(self, *args, **kwargs):
-        return super().setup(*args, **kwargs)
-
-    def dispatch(self, request, *args, **kwargs):
-        url = reverse_lazy('dashboard:home')
-
-        if request.user.is_authenticated:
-            return redirect(url)
-
-        return super().dispatch(request, *args, **kwargs)
-
-    def get(self, request):
-        return render(request, self.template_name)
 
 
 @method_decorator(
