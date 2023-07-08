@@ -1,13 +1,13 @@
-# Django Currency Converter
+# Django Customer Relationship Management
 
-A project made using Django, Currency Converter API, Tailwind.
+Description
 
 ## Running locally
 
 Clone the project
 
 ```bash
-git clone  https://github.com/Peagah-Vieira/Django-Curency-Converter
+git clone  https://github.com/Peagah-Vieira/Django-CRM
 ```
 
 Create a virtual environment
@@ -112,8 +112,6 @@ Class Based Views:
 [Django](https://www.djangoproject.com)
 
 [Tailwind + Flowbite](https://flowbite.com/docs/getting-started/django/)
-
-[Currency Converter API](https://rapidapi.com/solutionsbynotnull/api/currency-converter18/)
 
 
 
