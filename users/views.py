@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, View
 from django.utils.decorators import method_decorator
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class RegisterView(CreateView):
@@ -92,6 +94,14 @@ class LoginView(View):
             messages.error(request, 'Invalid credentials.')
 
         return redirect(url)
+
+
+class ResetPassordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/mail/password_reset_email.html'
+    subject_template_name = 'users/mail/password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password"  # noqa
+    success_url = reverse_lazy('users:login')
 
 
 @method_decorator(
