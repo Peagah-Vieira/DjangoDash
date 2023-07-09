@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, PasswordResetCustomForm
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
@@ -97,9 +97,10 @@ class LoginView(View):
 
 
 class ResetPassordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'users/password_reset.html'
+    form_class = PasswordResetCustomForm
     email_template_name = 'users/mail/password_reset_email.html'
     subject_template_name = 'users/mail/password_reset_subject.txt'
+    template_name = 'users/password_reset.html'
     success_message = "We've emailed you instructions for setting your password"  # noqa
     success_url = reverse_lazy('users:login')
 
