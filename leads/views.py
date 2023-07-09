@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views.generic import View
 
 
-class LeadsView(View):
-    template_name = 'leads.html'
+class CategoryView(View):
+    template_name = 'dashboard/pages/category.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

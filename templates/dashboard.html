@@ -1,11 +1,43 @@
-{% extends "_base.html" %}
-{% block title %}
-    Dashboard
-{% endblock title %}
-{% block content %}
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
-        {% include "dashboard/partials/navbar.html" %}
-        {% include "dashboard/partials/sidebar.html" %}
-        {% include "dashboard/pages/home.html" %}
-    </div>
-{% endblock content %}
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+            {% endblock title %}
+            Dashboard | Customer Relationship Management
+        </title>
+        <link rel="shortcut icon"
+              href="{% static 'images/favicon.png' %}"
+              type="image/x-icon">
+        <script src="https://kit.fontawesome.com/0527a7a8a4.js"
+                crossorigin="anonymous"></script>
+        {% compress css %}
+            <link rel="stylesheet" href="{% static 'src/output.css' %}">
+        {% endcompress %}
+    </head>
+    <body>
+        <div class="antialiased bg-gray-50 dark:bg-gray-900">
+            {% include "dashboard/partials/navbar.html" %}
+            {% include "dashboard/partials/sidebar.html" %}
+            {% block content %}
+            {% endblock content %}
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    {% include "messages/success.html" %}
+                {% elif message.tags == 'error' %}
+                    {% include "messages/error.html" %}
+                {% elif message.tags == 'warning' %}
+                    {% include "messages/warning.html" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
+    </body>
+</html>
