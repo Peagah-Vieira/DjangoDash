@@ -12,7 +12,7 @@ from django.views.generic import View
     name='dispatch'
 )
 class DashboardView(View):
-    template_name = 'dashboard/pages/home.html'
+    template_name = 'dashboard/pages/dashboard_home.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

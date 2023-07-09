@@ -11,8 +11,13 @@ urlpatterns = [
         name='home'
     ),
     path(
+        'leads/overview/',
+        leads_views.LeadView.as_view(),
+        name='leads_overview'
+    ),
+    path(
         'leads/category/',
         leads_views.CategoryView.as_view(),
         name='leads_category'
-    )
+    ),
 ]
