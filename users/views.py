@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm, PasswordResetCustomForm
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
@@ -7,8 +6,17 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, View
 from django.utils.decorators import method_decorator
-from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetConfirmView
+)
+from .forms import (
+    RegisterForm,
+    LoginForm,
+    PasswordResetCustomForm,
+    SetPasswordCustomForm
+)
 
 
 class RegisterView(CreateView):
@@ -96,15 +104,6 @@ class LoginView(View):
         return redirect(url)
 
 
-class ResetPassordView(SuccessMessageMixin, PasswordResetView):
-    form_class = PasswordResetCustomForm
-    email_template_name = 'users/mail/password_reset_email.html'
-    subject_template_name = 'users/mail/password_reset_subject.txt'
-    template_name = 'users/password_reset.html'
-    success_message = "We've emailed you instructions for setting your password"  # noqa
-    success_url = reverse_lazy('users:login')
-
-
 @method_decorator(
     login_required(
         login_url='users:login',
@@ -130,3 +129,19 @@ class LogoutView(View):
         messages.success(request, 'Logged out successfully')
         logout(request)
         return redirect(url)
+
+
+class PasswordResetCustomView(SuccessMessageMixin, PasswordResetView):
+    form_class = PasswordResetCustomForm
+    email_template_name = 'users/mail/password_reset_email.html'
+    subject_template_name = 'users/mail/password_reset_subject.txt'
+    template_name = 'users/password_reset.html'
+    success_message = "We've emailed you instructions for setting your password"  # noqa
+    success_url = reverse_lazy('users:login')
+
+
+class PasswordResetConfirmCustomView(SuccessMessageMixin, PasswordResetConfirmView):  # noqa
+    form_class = SetPasswordCustomForm
+    template_name = "users/password_reset_confirm.html"
+    success_message = "Your password has been set. You may go ahead and Login"  # noqa
+    success_url = reverse_lazy('users:login')
