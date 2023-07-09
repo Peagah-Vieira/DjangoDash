@@ -43,7 +43,16 @@ npm install
 Environment variables
 
 ```bash
+# Django Configuration
 SECRET_KEY = 'GENERATE A KEY'
+
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'key'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 ```
 
 Compile the Tailwind CSS
