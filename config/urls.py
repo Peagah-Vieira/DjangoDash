@@ -16,37 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from users import views as users_views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path(
-        '',
-        include('dashboard.urls')
-    ),
-    path(
-        'users/',
-        include('users.urls')
-    ),
-    path(
-        'password-reset/',
-        users_views.PasswordResetCustomView.as_view(),
-        name="password_reset"
-    ),
-    path(
-        'password-reset-confirm/<uidb64>/<token>',
-        users_views.PasswordResetConfirmCustomView.as_view(
-            template_name='users/password_reset_confirm.html'),
-        name="password_reset_confirm"
-    ),
-    path(
-        'password-reset-complete/',
-        auth_views.PasswordResetCompleteView.as_view(
-            template_name='users/password_reset_complete.html'),
-        name="password_reset_complete"
-    ),
-    path(
-        'admin/',
-        admin.site.urls,
-    )
+    path('', include('dashboard.urls')),
+    path('users/', include('users.urls')),
+    path('admin/', admin.site.urls),
 ]
