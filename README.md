@@ -7,10 +7,11 @@ A project for CRM made using Django and Tailwind.
 - Custom login and register authentication
 - Password reset with email 
 - Dashboard with navbar and sidebar
-- Customized tables
+- Custom tables
 - Custom pagination
 - Custom search
 - Custom empty state
+- Excel export
 - Flash messages
 - Tailwind CSS
 - Light and dark theme
