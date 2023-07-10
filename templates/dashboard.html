@@ -30,11 +30,11 @@
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == 'success' %}
-                    {% include "messages/success.html" %}
+                    {% include "dashboard/messages/success.html" %}
                 {% elif message.tags == 'error' %}
-                    {% include "messages/error.html" %}
+                    {% include "dashboard/messages/error.html" %}
                 {% elif message.tags == 'warning' %}
-                    {% include "messages/warning.html" %}
+                    {% include "dashboard/messages/warning.html" %}
                 {% endif %}
             {% endfor %}
         {% endif %}
