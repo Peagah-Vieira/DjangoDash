@@ -2,6 +2,31 @@
 
 A project for CRM made using Django and Tailwind.
 
+## Functionalities
+
+- Custom login and register authentication
+- Password reset with email 
+- Dashboard with navbar and sidebar
+- Customized tables
+- Custom pagination
+- Flash messages
+- Tailwind CSS
+- Responsive
+- Unit testing, integration testing and functional testing(Selenium)
+- Create, read, update, delete(CRUD)
+
+
+
+## Screenshots
+
+![LoginAndFlashMessage](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/8bd0c883-6c73-47e7-9609-80aab389b1eb)
+
+![Category](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/db0ce9f6-86a7-430d-96ad-be02917f3f3d)
+
+![DeleteConfirmation](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/ea147f8e-a173-4965-8a37-1e0c9cddb5b1)
+
+![CustomPagination](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/4d914fe2-6b47-49a3-81b8-a74e54734195)
+
 ## Running locally
 
 Clone the project
@@ -65,6 +90,12 @@ Perform the migrations
 
 ```bash
 py manage.py migrate
+```
+
+Seed leads app
+
+```bash
+py manage.py seed leads --number=100
 ```
 
 Start the server
