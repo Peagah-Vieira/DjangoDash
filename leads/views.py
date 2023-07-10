@@ -10,6 +10,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from utils.pagination import make_pagination_range
 from django.db.models import Q
+from django.http import JsonResponse
+import pandas
 
 
 class LeadView(generic.View):
@@ -114,19 +116,6 @@ class CategorySearchView(CategoryView):
         return render(request, self.template_name, context=context)
 
 
-class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
-    template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
-    success_message = 'Category deleted successfully'
-
-    def get_object(self):
-        _id = int(self.kwargs.get('pk'))
-        category = get_object_or_404(Category, pk=_id)
-        return category
-
-    def get_success_url(self):
-        return reverse_lazy('dashboard:leads_category')
-
-
 class CategoryUpdateView(SuccessMessageMixin, generic.UpdateView):
     model = Category
     fields = ["name", "description"]
@@ -140,3 +129,33 @@ class CategoryUpdateView(SuccessMessageMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('dashboard:leads_category')
+
+
+class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
+    template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
+    success_message = 'Category deleted successfully'
+
+    def get_object(self):
+        _id = int(self.kwargs.get('pk'))
+        category = get_object_or_404(Category, pk=_id)
+        return category
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:leads_category')
+
+
+class CategoryExportView(generic.View):
+    def get(self, request):
+        categories = Category.objects.all().order_by('-id')
+        data = []
+
+        for category in categories:
+            data.append({
+                'name': category.name,
+                'description': category.description
+            })
+
+        messages.success(request, 'Category export successfully')
+        pandas.DataFrame(data).to_excel('categories.xlsx')
+
+        return redirect('dashboard:leads_category')

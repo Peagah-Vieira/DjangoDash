@@ -26,6 +26,11 @@ urlpatterns = [
         name='leads_category_search'
     ),
     path(
+        'leads/category/export',
+        leads_views.CategoryExportView.as_view(),
+        name='leads_category_export'
+    ),
+    path(
         'leads/category/<int:pk>/update/',
         leads_views.CategoryUpdateView.as_view(),
         name='leads_category_update'
