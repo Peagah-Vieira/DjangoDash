@@ -11,11 +11,10 @@ A project for CRM made using Django and Tailwind.
 - Custom pagination
 - Flash messages
 - Tailwind CSS
+- Light and Dark theme
 - Responsive
 - Unit testing, integration testing and functional testing(Selenium)
 - Create, read, update, delete(CRUD)
-
-
 
 ## Screenshots
 
@@ -26,6 +25,8 @@ A project for CRM made using Django and Tailwind.
 ![DeleteConfirmation](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/ea147f8e-a173-4965-8a37-1e0c9cddb5b1)
 
 ![CustomPagination](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/4d914fe2-6b47-49a3-81b8-a74e54734195)
+
+![ThemeSwitch](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/28dc5fec-293a-4ad9-a5bb-235ba825dd78)
 
 ## Running locally
 
