@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import CreateView, View
+from .forms import CategoryForm
 
 
 class LeadView(View):
@@ -21,7 +22,8 @@ class LeadView(View):
         ...
 
 
-class CategoryView(View):
+class CategoryView(CreateView):
+    form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
     def __init__(self, *args, **kwargs):
@@ -34,7 +36,9 @@ class CategoryView(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request):
-        return render(request, self.template_name)
+        form = self.form()
+        context = {'form': form}
+        return render(request, self.template_name, context=context)
 
     def post(self, request):
         ...
