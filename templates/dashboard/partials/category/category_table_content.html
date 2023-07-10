@@ -18,12 +18,11 @@
                     <td class="px-4 py-3">{{ category.updated_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">
                         <a href="javascript:void(0)"
-                           class="confirm-delete"
+                           class="font-medium hover:underline"
                            data-url="{% url 'dashboard:leads_category_delete' pk=category.id %}"
                            data-target="#categoryDeleteModal"
-                           data-modal-toggle="categoryDeleteModal">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                           data-modal-toggle="categoryDeleteModal">Remove</a>
+                        <a href="#" class="font-medium hover:underline">Edit</a>
                     </td>
                 </tr>
             {% endfor %}
