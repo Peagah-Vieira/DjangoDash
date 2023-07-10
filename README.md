@@ -9,9 +9,11 @@ A project for CRM made using Django and Tailwind.
 - Dashboard with navbar and sidebar
 - Customized tables
 - Custom pagination
+- Custom search
+- Custom empty state
 - Flash messages
 - Tailwind CSS
-- Light and Dark theme
+- Light and dark theme
 - Responsive
 - Unit testing, integration testing and functional testing(Selenium)
 - Create, read, update, delete(CRUD)
