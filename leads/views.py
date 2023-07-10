@@ -3,6 +3,7 @@ from django.views.generic import CreateView, View
 from .forms import CategoryForm
 from django.urls import reverse_lazy
 from django.contrib import messages
+from leads.models import Category
 
 
 class LeadView(View):
@@ -39,7 +40,8 @@ class CategoryView(CreateView):
 
     def get(self, request):
         form = self.form()
-        context = {'form': form}
+        categories = Category.objects.all()
+        context = {'form': form, 'categories': categories}
         return render(request, self.template_name, context=context)
 
     def post(self, request):

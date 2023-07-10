@@ -10,19 +10,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="border-b dark:border-gray-700">
-                <th scope="row"
-                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Monitor BenQ EX2710Q
-                </th>
-                <td class="px-4 py-3">TV/Monitor</td>
-                <td class="px-4 py-3">BenQ</td>
-                <td class="px-4 py-3">354</td>
-                <td class="px-4 py-3">
-                    <i class="fa-solid fa-eye"></i>
-                    <i class="fa-solid fa-trash"></i>
-                </td>
-            </tr>
+            {% for category in categories %}
+                <tr class="border-b dark:border-gray-700">
+                    <td class="px-4 py-3">{{ category.name }}</td>
+                    <td class="px-4 py-3">{{ category.description }}</td>
+                    <td class="px-4 py-3">{{ category.created_at|date:'Y-m-d' }}</td>
+                    <td class="px-4 py-3">{{ category.updated_at|date:'Y-m-d' }}</td>
+                    <td class="px-4 py-3">
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
