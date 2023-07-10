@@ -89,11 +89,11 @@ class CategorySearchView(CategoryView):
                 Q(description__icontains=search_term),
             )
         ).order_by('-id')
-        
+
         current_page = int(request.GET.get('page', 1))
         paginator = Paginator(categories, per_page=10)
         page_obj = paginator.get_page(current_page)
-        
+
         pagination_range = make_pagination_range(
             page_range=paginator.page_range,
             qty_pages=4,
@@ -117,6 +117,21 @@ class CategorySearchView(CategoryView):
 class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
     template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
     success_message = 'Category deleted successfully'
+
+    def get_object(self):
+        _id = int(self.kwargs.get('pk'))
+        category = get_object_or_404(Category, pk=_id)
+        return category
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:leads_category')
+
+
+class CategoryUpdateView(SuccessMessageMixin, generic.UpdateView):
+    model = Category
+    fields = ["name", "description"]
+    template_name = 'dashboard/partials/category/category_table_update_modal.html'  # noqa
+    success_message = 'Category updated successfully'
 
     def get_object(self):
         _id = int(self.kwargs.get('pk'))

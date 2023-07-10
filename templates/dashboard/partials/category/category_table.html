@@ -6,9 +6,10 @@
                 {% include "dashboard/partials/category/category_table_content.html" %}
                 {% include "dashboard/partials/category/category_table_nav.html" %}
             {% else %}
-            {% include "dashboard/partials/category/category_table_empty_state.html" %}
+                {% include "dashboard/partials/category/category_table_empty_state.html" %}
             {% endif %}
             {% include "dashboard/partials/category/category_table_create_modal.html" %}
+            {% include "dashboard/partials/category/category_table_update_modal.html" %}
             {% include "dashboard/partials/category/category_table_delete_modal.html" %}
         </div>
     </div>

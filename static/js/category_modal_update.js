@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let form_confirm = document.querySelector('#form_confirm_delete_modal')
-    let buttons = document.querySelectorAll("[data-target='#categoryDeleteModal']");
+    let form_confirm = document.querySelector('#form_confirm_update_modal')
+    let buttons = document.querySelectorAll("[data-target='#categoryUpdateModal']");
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             if (button.dataset.url) {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     });
-    let confirmModal = document.getElementById("confirmDeleteButtonModal")
+    let confirmModal = document.getElementById("confirmUpdateButtonModal")
     confirmModal.addEventListener('click', () => {
         form_confirm.submit();
     });
