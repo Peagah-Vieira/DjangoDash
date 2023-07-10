@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from leads.models import Category
 from django.shortcuts import get_object_or_404
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class LeadView(generic.View):
@@ -52,15 +53,15 @@ class CategoryView(generic.CreateView):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Category created succesfully')
+            messages.success(request, 'Category created successfully')
             return redirect(url)
 
         return render(request, self.template_name, context=context)
 
 
-class CategoryDeleteView(generic.DeleteView):
-    template_name = 'dashboard/partials/category/category_table_delete_modal.html'
-    success_message = 'Adresse supprimée'
+class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
+    template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
+    success_message = 'Category deleted successfully'
 
     def get_object(self):
         _id = int(self.kwargs.get('pk'))
