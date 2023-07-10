@@ -17,10 +17,13 @@
                     <td class="px-4 py-3">{{ category.created_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">{{ category.updated_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">
-                        <button data-modal-toggle="categoryDeleteModal">
+                        <a href="javascript:void(0)"
+                           class="confirm-delete"
+                           data-url="{% url 'dashboard:leads_category_delete' pk=category.id %}"
+                           data-target="#categoryDeleteModal"
+                           data-modal-toggle="categoryDeleteModal">
                             <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <i class="fa-solid fa-eye"></i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
