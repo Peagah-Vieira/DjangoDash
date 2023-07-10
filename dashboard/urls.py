@@ -11,6 +11,11 @@ urlpatterns = [
         name='home'
     ),
     path(
+        'profile/',
+        views.DashboardProfileView.as_view(),
+        name='profile'
+    ),
+    path(
         'leads/overview/',
         leads_views.LeadView.as_view(),
         name='leads_overview'

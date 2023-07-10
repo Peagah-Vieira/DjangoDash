@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.http.response import Http404
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from leads.models import Category
@@ -16,14 +15,8 @@ from utils.pagination import make_pagination_range
 import pandas
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class LeadView(generic.View):
+class LeadView(LoginRequiredMixin, generic.View):
+    login_url = "users:login"
     template_name = 'dashboard/pages/leads_overview.html'
 
     def __init__(self, *args, **kwargs):
@@ -42,14 +35,8 @@ class LeadView(generic.View):
         ...
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class CategoryView(generic.View):
+class CategoryView(LoginRequiredMixin, generic.View):
+    login_url = "users:login"
     form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
@@ -94,14 +81,8 @@ class CategoryView(generic.View):
         return render(request, self.template_name, context=context)
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
 class CategorySearchView(CategoryView):
+    login_url = "users:login"
     form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
@@ -148,14 +129,8 @@ class CategorySearchView(CategoryView):
         return render(request, self.template_name, context=context)
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class CategoryUpdateView(SuccessMessageMixin, generic.UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageMixin):  # noqa
+    login_url = "users:login"
     model = Category
     fields = ["name", "description"]
     template_name = 'dashboard/partials/category/category_table_update_modal.html'  # noqa
@@ -179,14 +154,8 @@ class CategoryUpdateView(SuccessMessageMixin, generic.UpdateView):
         return reverse_lazy('dashboard:leads_category')
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView, SuccessMessageMixin):  # noqa
+    login_url = "users:login"
     template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
     success_message = 'Category deleted successfully'
 
@@ -208,14 +177,9 @@ class CategoryDeleteView(SuccessMessageMixin, generic.DeleteView):
         return reverse_lazy('dashboard:leads_category')
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class CategoryExportView(generic.View):
+class CategoryExportView(LoginRequiredMixin, generic.View, SuccessMessageMixin):  # noqa
+    login_url = "users:login"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
