@@ -40,7 +40,7 @@ class CategoryView(CreateView):
 
     def get(self, request):
         form = self.form()
-        categories = Category.objects.all()
+        categories = Category.objects.all().order_by('-id')
         context = {'form': form, 'categories': categories}
         return render(request, self.template_name, context=context)
 
