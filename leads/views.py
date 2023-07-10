@@ -5,9 +5,11 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from leads.models import Category
 from django.shortcuts import get_object_or_404
+from django.http.response import Http404
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from utils.pagination import make_pagination_range
+from django.db.models import Q
 
 
 class LeadView(generic.View):
@@ -70,6 +72,44 @@ class CategoryView(generic.View):
             form.save()
             messages.success(request, 'Category created successfully')
             return redirect(url)
+
+        return render(request, self.template_name, context=context)
+
+
+class CategorySearchView(CategoryView):
+    form = CategoryForm
+    template_name = 'dashboard/pages/leads_category.html'
+
+    def get(self, request):
+        form = self.form()
+        search_term = self.request.GET.get('q', '').strip()
+        categories = Category.objects.filter(
+            Q(
+                Q(name__icontains=search_term) |
+                Q(description__icontains=search_term),
+            )
+        ).order_by('-id')
+        
+        current_page = int(request.GET.get('page', 1))
+        paginator = Paginator(categories, per_page=10)
+        page_obj = paginator.get_page(current_page)
+        
+        pagination_range = make_pagination_range(
+            page_range=paginator.page_range,
+            qty_pages=4,
+            current_page=current_page,
+        )
+
+        if not search_term:
+            raise Http404()
+
+        context = {
+            'form': form,
+            'categories': page_obj,
+            'pagination_range': pagination_range,
+            'search_term': search_term,
+            'additional_url_query': f'&q={search_term}',
+        }
 
         return render(request, self.template_name, context=context)
 
