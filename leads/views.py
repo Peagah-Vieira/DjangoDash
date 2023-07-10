@@ -6,6 +6,8 @@ from django.contrib import messages
 from leads.models import Category
 from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
+from utils.pagination import make_pagination_range
 
 
 class LeadView(generic.View):
@@ -43,7 +45,20 @@ class CategoryView(generic.View):
     def get(self, request):
         form = self.form()
         categories = Category.objects.all().order_by('-id')
-        context = {'form': form, 'categories': categories}
+        current_page = int(request.GET.get('page', 1))
+        paginator = Paginator(categories, per_page=1)
+        page_obj = paginator.get_page(current_page)
+        pagination_range = make_pagination_range(
+            page_range=paginator.page_range,
+            qty_pages=4,
+            current_page=current_page,
+        )
+        context = {
+            'form': form,
+            'categories': page_obj,
+            'pagination_range': pagination_range
+        }
+
         return render(request, self.template_name, context=context)
 
     def post(self, request):
