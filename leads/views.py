@@ -46,7 +46,7 @@ class CategoryView(generic.View):
         form = self.form()
         categories = Category.objects.all().order_by('-id')
         current_page = int(request.GET.get('page', 1))
-        paginator = Paginator(categories, per_page=1)
+        paginator = Paginator(categories, per_page=10)
         page_obj = paginator.get_page(current_page)
         pagination_range = make_pagination_range(
             page_range=paginator.page_range,

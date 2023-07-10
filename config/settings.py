@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',  # new
     'dashboard',  # new
     'leads',  # new
+    'django_seed',  # new
     'compressor',  # new
 ]
 
