@@ -27,7 +27,7 @@ class LeadView(generic.View):
         ...
 
 
-class CategoryView(generic.CreateView):
+class CategoryView(generic.View):
     form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
