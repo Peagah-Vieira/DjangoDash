@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, View
 from .forms import CategoryForm
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 
 class LeadView(View):
@@ -41,4 +43,13 @@ class CategoryView(CreateView):
         return render(request, self.template_name, context=context)
 
     def post(self, request):
-        ...
+        form = self.form(request.POST)
+        context = {'form': form}
+        url = reverse_lazy('dashboard:leads_category')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category created succesfully')
+            return redirect(url)
+
+        return render(request, self.template_name, context=context)
