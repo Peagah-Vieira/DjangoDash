@@ -22,17 +22,22 @@ urlpatterns = [
         name='leads'
     ),
     path(
+        'leads/search/',
+        leads_views.LeadSearchView.as_view(),
+        name='leads_search'
+    ),
+    path(
         'leads/category/',
         leads_views.CategoryView.as_view(),
         name='leads_category'
     ),
     path(
-        'leads/category/search',
+        'leads/category/search/',
         leads_views.CategorySearchView.as_view(),
         name='leads_category_search'
     ),
     path(
-        'leads/category/export',
+        'leads/category/export/',
         leads_views.CategoryExportView.as_view(),
         name='leads_category_export'
     ),

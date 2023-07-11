@@ -61,6 +61,57 @@ class LeadView(LoginRequiredMixin, generic.View):
         return render(request, self.template_name, context=context)
 
 
+class LeadSearchView(LeadView):
+    login_url = "users:login"
+    form = LeadForm
+    template_name = 'dashboard/pages/leads.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        form = self.form()
+        search_term = self.request.GET.get('q', '').strip()
+        leads = Lead.objects.filter(
+            Q(
+                Q(first_name__icontains=search_term) |
+                Q(last_name__icontains=search_term) |
+                Q(email__icontains=search_term) |
+                Q(age__icontains=search_term) |
+                Q(category__name__icontains=search_term),
+            )
+        ).order_by('-id')
+
+        current_page = int(request.GET.get('page', 1))
+        paginator = Paginator(leads, per_page=10)
+        page_obj = paginator.get_page(current_page)
+
+        pagination_range = make_pagination_range(
+            page_range=paginator.page_range,
+            qty_pages=4,
+            current_page=current_page,
+        )
+
+        if not search_term:
+            raise Http404()
+
+        context = {
+            'form': form,
+            'leads': page_obj,
+            'pagination_range': pagination_range,
+            'search_term': search_term,
+            'additional_url_query': f'&q={search_term}',
+        }
+
+        return render(request, self.template_name, context=context)
+
+
 class CategoryView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
     form = CategoryForm
