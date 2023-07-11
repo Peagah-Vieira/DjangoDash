@@ -72,7 +72,7 @@
                         </i>
                         <div class="text-sm pt-2 text-gray-900 dark:text-white">Leads</div>
                     </a>
-                    <a href="#"
+                    <a href="{% url 'dashboard:profile' %}"
                        class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
                         <i class="fa-solid fa-user fa-xl mx-auto mb-1 first-line:text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"
                            aria-hidden="true">
@@ -126,12 +126,8 @@
                 <ul class="py-1 text-gray-700 dark:text-gray-300"
                     aria-labelledby="dropdown">
                     <li>
-                        <a href="#"
+                        <a href="{% url 'dashboard:profile' %}"
                            class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">My profile</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Account settings</a>
                     </li>
                 </ul>
                 <ul class="py-1 text-gray-700 dark:text-gray-300"
