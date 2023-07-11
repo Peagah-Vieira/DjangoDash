@@ -3,9 +3,8 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView, View
-from django.utils.decorators import method_decorator
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import (
     PasswordResetView,
@@ -19,7 +18,7 @@ from .forms import (
 )
 
 
-class RegisterView(CreateView):
+class RegisterView(generic.CreateView):
     form = RegisterForm
     template_name = 'users/register.html'
 
@@ -57,7 +56,7 @@ class RegisterView(CreateView):
         return render(request, self.template_name, context=context)
 
 
-class LoginView(View):
+class LoginView(generic.View):
     form = LoginForm
     template_name = 'users/login.html'
 
@@ -104,14 +103,7 @@ class LoginView(View):
         return redirect(url)
 
 
-@method_decorator(
-    login_required(
-        login_url='users:login',
-        redirect_field_name='next'
-    ),
-    name='dispatch'
-)
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, generic.View):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -145,3 +137,23 @@ class PasswordResetConfirmCustomView(SuccessMessageMixin, PasswordResetConfirmVi
     template_name = "users/password_reset_confirm.html"
     success_message = "Your password has been set. You may go ahead and Login"  # noqa
     success_url = reverse_lazy('users:login')
+
+
+class UserProfileView(LoginRequiredMixin, generic.View):
+    login_url = "users:login"
+    template_name = 'dashboard/pages/dashboard_profile.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        ...

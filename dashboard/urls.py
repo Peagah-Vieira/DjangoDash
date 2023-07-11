@@ -1,5 +1,6 @@
 from . import views
 from leads import views as leads_views
+from users import views as users_views
 from django.urls import path
 
 app_name = "dashboard"
@@ -12,7 +13,7 @@ urlpatterns = [
     ),
     path(
         'profile/',
-        views.DashboardProfileView.as_view(),
+        users_views.UserProfileView.as_view(),
         name='profile'
     ),
     path(
