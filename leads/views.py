@@ -8,7 +8,7 @@ from django.http.response import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
-from leads.models import Category
+from leads.models import Category, Lead
 from .forms import CategoryForm
 from utils.pagination import make_pagination_range
 
@@ -29,7 +29,21 @@ class LeadView(LoginRequiredMixin, generic.View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request):
-        return render(request, self.template_name)
+        leads = Lead.objects.all().order_by('-id')
+        current_page = int(request.GET.get('page', 1))
+        paginator = Paginator(leads, per_page=10)
+        page_obj = paginator.get_page(current_page)
+        pagination_range = make_pagination_range(
+            page_range=paginator.page_range,
+            qty_pages=4,
+            current_page=current_page,
+        )
+        context = {
+            'leads': page_obj,
+            'pagination_range': pagination_range
+        }
+
+        return render(request, self.template_name, context=context)
 
     def post(self, request):
         ...

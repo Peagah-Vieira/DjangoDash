@@ -13,22 +13,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="border-b dark:border-gray-700">
-                <th scope="row"
-                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Monitor BenQ EX2710Q
-                </th>
-                <td class="px-4 py-3">TV/Monitor</td>
-                <td class="px-4 py-3">BenQ</td>
-                <td class="px-4 py-3">BenQ</td>
-                <td class="px-4 py-3">BenQ</td>
-                <td class="px-4 py-3">BenQ</td>
-                <td class="px-4 py-3">354</td>
-                <td class="px-4 py-3">
-                    <i class="fa-solid fa-eye"></i>
-                    <i class="fa-solid fa-trash"></i>
-                </td>
-            </tr>
+            {% for lead in leads %}
+                <tr class="border-b dark:border-gray-700">
+                    <td class="px-4 py-3">{{ lead.first_name }}</td>
+                    <td class="px-4 py-3">{{ lead.last_name }}</td>
+                    <td class="px-4 py-3">{{ lead.email }}</td>
+                    <td class="px-4 py-3">{{ lead.age }}</td>
+                    <td class="px-4 py-3">{{ lead.category.name }}</td>
+                    <td class="px-4 py-3">{{ lead.created_at|date:'Y-m-d' }}</td>
+                    <td class="px-4 py-3">{{ lead.updated_at|date:'Y-m-d' }}</td>
+                    <td class="px-4 py-3">
+                        <a href="#" class="font-medium hover:underline">Remove</a>
+                        <a href="#" class="font-medium hover:underline">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
