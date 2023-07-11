@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from leads.models import Category, Lead, Agent
-from .forms import CategoryForm, LeadForm
+from .forms import CategoryForm, LeadForm, AgentForm
 from utils.pagination import make_pagination_range
 import pandas
 
@@ -386,6 +386,7 @@ class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
 
 class AgentView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
+    form = AgentForm
     template_name = 'dashboard/pages/leads_agent.html'
 
     def __init__(self, *args, **kwargs):
@@ -398,6 +399,7 @@ class AgentView(LoginRequiredMixin, generic.View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request):
+        form = self.form()
         agents = Agent.objects.all().order_by('-id')
         current_page = int(request.GET.get('page', 1))
         paginator = Paginator(agents, per_page=10)
@@ -408,6 +410,7 @@ class AgentView(LoginRequiredMixin, generic.View):
             current_page=current_page,
         )
         context = {
+            'form': form,
             'agents': page_obj,
             'pagination_range': pagination_range
         }
@@ -415,4 +418,13 @@ class AgentView(LoginRequiredMixin, generic.View):
         return render(request, self.template_name, context=context)
 
     def post(self, request):
-        ...
+        form = self.form(request.POST)
+        context = {'form': form}
+        url = reverse_lazy('dashboard:leads_agent')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Agent created successfully')
+            return redirect(url)
+
+        return render(request, self.template_name, context=context)
