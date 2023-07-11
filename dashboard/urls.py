@@ -77,6 +77,11 @@ urlpatterns = [
         name='leads_agent_search'
     ),
     path(
+        'leads/agent/<int:pk>/update/',
+        leads_views.AgentUpdateView.as_view(),
+        name='leads_agent_update'
+    ),
+    path(
         'leads/agent/<int:pk>/delete/',
         leads_views.AgentDeleteView.as_view(),
         name='leads_agent_delete'

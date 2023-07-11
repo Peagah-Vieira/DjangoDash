@@ -501,3 +501,42 @@ class AgentDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteVie
 
     def get_success_url(self):
         return reverse_lazy('dashboard:leads_agent')
+
+
+class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
+    login_url = "users:login"
+    model = Agent
+    form = AgentForm
+    fields = [
+        "first_name",
+        "last_name",
+        "email",
+        "phone_number",
+    ]
+    template_name = 'dashboard/partials/agent/agent_table_update_modal.html'  # noqa
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_object(self):
+        _id = int(self.kwargs.get('pk'))
+        agent = get_object_or_404(Agent, pk=_id)
+        return agent
+
+    def post(self, request, pk):
+        form = self.form(request.POST)
+        url = reverse_lazy('dashboard:leads_agent')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Agent updated successfully')
+            return redirect(url)
+
+        messages.error(request, 'Agent not updated successfully')
+        return redirect(url)

@@ -26,7 +26,11 @@
                         data-url="{% url 'dashboard:leads_agent_delete' pk=agent.id %}"
                         data-target="#itemDeleteModal"
                         data-modal-toggle="itemDeleteModal">Remove</a>
-                        <a href="#">Edit</a>
+                        <a href="#"
+                        class="font-medium hover:underline"
+                        data-url="{% url 'dashboard:leads_agent_update' pk=agent.id %}"
+                        data-target="#itemUpdateModal"
+                        data-modal-toggle="itemUpdateModal">Edit</a>
                     </td>
                 </tr>
             {% endfor %}
