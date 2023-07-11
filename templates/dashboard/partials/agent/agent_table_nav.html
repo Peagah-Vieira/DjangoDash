@@ -1,0 +1,42 @@
+<nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+     aria-label="Table navigation">
+    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        Showing
+        <span class="font-semibold text-gray-900 dark:text-white">{{ agents.number }}</span>
+        of
+        <span class="font-semibold text-gray-900 dark:text-white">{{ agents.paginator.num_pages }}</span>
+    </span>
+    <ul class="inline-flex items-stretch -space-x-px">
+        {% if pagination_range.first_page_out_of_range %}
+            <li>
+                <a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                   href="?page=1{{ additional_url_query }}">1</a>
+            </li>
+            <li>
+                <span class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</span>
+            </li>
+        {% endif %}
+        {% for page in pagination_range.pagination %}
+            {% if pagination_range.current_page == page %}
+                <li>
+                    <a class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                       href="?page={{ page }}{{ additional_url_query }}">{{ page }}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                       href="?page={{ page }}{{ additional_url_query }}">{{ page }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if pagination_range.last_page_out_of_range %}
+            <li>
+                <span class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</span>
+            </li>
+            <li>
+                <a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                   href="?page={{ pagination_range.total_pages }}{{ additional_url_query }}">{{ pagination_range.total_pages }}</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
