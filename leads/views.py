@@ -478,3 +478,26 @@ class AgentSearchView(AgentView):
         }
 
         return render(request, self.template_name, context=context)
+
+
+class AgentDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+    login_url = "users:login"
+    template_name = 'dashboard/partials/agent/agent_table_delete_modal.html'  # noqa
+    success_message = 'Agent deleted successfully'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_object(self):
+        _id = int(self.kwargs.get('pk'))
+        agent = get_object_or_404(Agent, pk=_id)
+        return agent
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:leads_agent')
