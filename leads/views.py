@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from leads.models import Category, Lead
-from .forms import CategoryForm
+from .forms import CategoryForm, LeadForm
 from utils.pagination import make_pagination_range
 
 import pandas
@@ -17,6 +17,7 @@ import pandas
 
 class LeadView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
+    form = LeadForm
     template_name = 'dashboard/pages/leads.html'
 
     def __init__(self, *args, **kwargs):
@@ -29,6 +30,7 @@ class LeadView(LoginRequiredMixin, generic.View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request):
+        form = self.form()
         leads = Lead.objects.all().order_by('-id')
         current_page = int(request.GET.get('page', 1))
         paginator = Paginator(leads, per_page=10)
@@ -39,6 +41,7 @@ class LeadView(LoginRequiredMixin, generic.View):
             current_page=current_page,
         )
         context = {
+            'form': form,
             'leads': page_obj,
             'pagination_range': pagination_range
         }
@@ -46,7 +49,16 @@ class LeadView(LoginRequiredMixin, generic.View):
         return render(request, self.template_name, context=context)
 
     def post(self, request):
-        ...
+        form = self.form(request.POST)
+        context = {'form': form}
+        url = reverse_lazy('dashboard:leads')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Lead created successfully')
+            return redirect(url)
+
+        return render(request, self.template_name, context=context)
 
 
 class CategoryView(LoginRequiredMixin, generic.View):
