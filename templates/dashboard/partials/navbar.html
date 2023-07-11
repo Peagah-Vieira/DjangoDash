@@ -43,13 +43,6 @@
                     Apps
                 </div>
                 <div class="grid grid-cols-3 gap-4 p-4">
-                    <a href="{% url 'dashboard:home' %}"
-                       class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
-                        <i class="fa-solid fa-house fa-xl mx-auto mb-1 first-line:text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"
-                           aria-hidden="true">
-                        </i>
-                        <div class="text-sm pt-2 text-gray-900 dark:text-white">Home</div>
-                    </a>
                     <a href="{% url 'dashboard:leads' %}"
                        class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
                         <i class="fa-solid fa-pencil fa-xl mx-auto mb-1 first-line:text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"
@@ -64,7 +57,7 @@
                         </i>
                         <div class="text-sm pt-2 text-gray-900 dark:text-white">Categories</div>
                     </a>
-                    <a href="#"
+                    <a href="{% url 'dashboard:leads_agent' %}"
                        class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
                         <i class="fa-solid fa-user-tie fa-xl mx-auto mb-1 first-line:text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"
                            aria-hidden="true">

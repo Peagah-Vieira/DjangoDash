@@ -382,3 +382,23 @@ class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
         pandas.DataFrame(data).to_excel('categories.xlsx')
 
         return redirect('dashboard:leads_category')
+
+
+class AgentView(LoginRequiredMixin, generic.View):
+    login_url = "users:login"
+    template_name = 'dashboard/pages/leads_agent.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        ...

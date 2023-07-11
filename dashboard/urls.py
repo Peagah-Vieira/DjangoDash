@@ -66,4 +66,9 @@ urlpatterns = [
         leads_views.CategoryDeleteView.as_view(),
         name='leads_category_delete'
     ),
+    path(
+        'leads/agent/',
+        leads_views.AgentView.as_view(),
+        name='leads_agent'
+    ),
 ]
