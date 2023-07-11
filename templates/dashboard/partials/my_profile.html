@@ -1,9 +1,12 @@
 <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
     <div class="bg-gray-100 dark:bg-gray-800 px-5 py-10 mx-auto max-w-screen-xl lg:px-5 elative shadow rounded-lg w-6/6 md:w-5/6 lg:w-4/6 xl:w-3/6">
         <div class="flex justify-center items-center mb-10">
-            <img src="https://avatars.githubusercontent.com/u/105545343"
-                 class="w-32 rounded-full"
-                 alt="Avatar" />
+            {% if user.avatar %}
+            {% else %}
+                <img src="https://www.svgrepo.com/download/5125/avatar.svg"
+                     class="w-32 rounded-full"
+                     alt="Avatar" />
+            {% endif %}
         </div>
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Profile Information -
@@ -11,44 +14,44 @@
         </h2>
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div class="sm:col-span-2">
-                <label for="brand"
+                <label for="first_name"
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
                 <input type="text"
-                       name="brand"
-                       id="brand"
+                       name="first_name"
+                       id="first_name"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                       placeholder="Product brand"
-                       required="">
+                       {% if user.first_name %} placeholder="{{ user.first_name }}" {% else %} placeholder="No registered first name" {% endif %}
+                       disabled>
             </div>
             <div class="sm:col-span-2">
-                <label for="price"
+                <label for="last_name"
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                <input type="number"
-                       name="price"
-                       id="price"
+                <input type="text"
+                       name="last_name"
+                       id="last_name"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                       placeholder="$2999"
-                       required="">
+                       {% if user.last_name %} placeholder="{{ user.last_name }}" {% else %} placeholder="No registered last name" {% endif %}
+                       disabled>
             </div>
             <div class="sm:col-span-2">
-                <label for="brand"
+                <label for="username"
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                 <input type="text"
-                       name="brand"
-                       id="brand"
+                       name="username"
+                       id="username"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                       placeholder="Product brand"
-                       required="">
+                       {% if user.username %} placeholder="{{ user.username }}" {% else %} placeholder="No registered username" {% endif %}
+                       disabled>
             </div>
             <div class="sm:col-span-2">
-                <label for="price"
+                <label for="email"
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                <input type="number"
-                       name="price"
-                       id="price"
+                <input type="text"
+                       name="email"
+                       id="email"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                       placeholder="$2999"
-                       required="">
+                       {% if user.email %} placeholder="{{ user.email }}" {% else %} placeholder="No registered email" {% endif %}
+                       disabled>
             </div>
         </div>
     </div>
