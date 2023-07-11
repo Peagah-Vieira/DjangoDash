@@ -540,3 +540,33 @@ class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
 
         messages.error(request, 'Agent not updated successfully')
         return redirect(url)
+
+
+class AgentExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+    login_url = "users:login"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        agents = Agent.objects.all().order_by('-id')
+        data = []
+
+        for agent in agents:
+            data.append({
+                "first_name": agent.first_name,
+                "last_name": agent.last_name,
+                "email": agent.email,
+                "phone_number": agent.phone_number,
+            })
+
+        messages.success(request, 'Agent export successfully')
+        pandas.DataFrame(data).to_excel('agents.xlsx')
+
+        return redirect('dashboard:leads_agent')
