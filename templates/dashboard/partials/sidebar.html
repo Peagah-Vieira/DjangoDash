@@ -28,47 +28,63 @@
             </li>
             <!-- Leads -->
             <li>
+                <a href="{% url 'dashboard:leads_overview' %}"
+                   class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i class="fa-solid fa-pencil fa-lg text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                       aria-hidden="true">
+                    </i>
+                    <span class="ml-3">Leads</span>
+                </a>
+            </li>
+            <!-- Categories -->
+            <li>
+                <a href="{% url 'dashboard:leads_category' %}"
+                   class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i class="fa-solid fa-folder fa-lg text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                       aria-hidden="true">
+                    </i>
+                    <span class="ml-3">Categories</span>
+                </a>
+            </li>
+            <!-- Agents -->
+            <li>
+                <a href="#"
+                   class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i class="fa-solid fa-user-tie fa-lg text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                       aria-hidden="true">
+                    </i>
+                    <span class="ml-3">Agents</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <!-- Documentation -->
+            <li>
                 <button type="button"
                         class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-leads"
                         data-collapse-toggle="dropdown-leads">
-                    <i class="fa-solid fa-pencil fa-lg flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    <i class="fa-solid fa-file fa-lg flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                        aria-hidden="true">
                     </i>
-                    <span class="flex-1 ml-3 text-left whitespace-nowrap">Leads</span>
+                    <span class="flex-1 ml-3 text-left whitespace-nowrap">Documentation</span>
                     <i class="fa-sharp fa-solid fa-arrow-down fa-sm"></i>
                 </button>
                 <ul id="dropdown-leads" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="{% url 'dashboard:leads_overview' %}"
-                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Overview</a>
+                        <a href="https://flowbite.com/blocks/"
+                           target="_blank"
+                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tailwind</a>
                     </li>
                     <li>
-                        <a href="{% url 'dashboard:leads_category' %}"
-                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Category</a>
-                    </li>
-                </ul>
-            </li>
-            <!-- Agents -->
-            <li>
-                <button type="button"
-                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-agents"
-                        data-collapse-toggle="dropdown-agents">
-                    <i class="fa-solid fa-user-tie fa-lg flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                       aria-hidden="true">
-                    </i>
-                    <span class="flex-1 ml-3 text-left whitespace-nowrap">Agents</span>
-                    <i class="fa-sharp fa-solid fa-arrow-down fa-sm"></i>
-                </button>
-                <ul id="dropdown-agents" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="#"
-                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Option 1</a>
+                        <a href="https://tailwindcss.com"
+                           target="_blank"
+                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Flowbite</a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Option 2</a>
+                        <a href="https://github.com/Peagah-Vieira/Django-CRM"
+                           target="_blank"
+                           class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Github Repository</a>
                     </li>
                 </ul>
             </li>
