@@ -11,7 +11,6 @@ from django.core.paginator import Paginator
 from leads.models import Category, Lead
 from .forms import CategoryForm, LeadForm
 from utils.pagination import make_pagination_range
-
 import pandas
 
 
@@ -112,9 +111,10 @@ class LeadSearchView(LeadView):
         return render(request, self.template_name, context=context)
 
 
-class LeadUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageMixin):  # noqa
+class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
     login_url = "users:login"
     model = Lead
+    form = LeadForm
     fields = [
         "first_name",
         "last_name",
@@ -123,7 +123,6 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageMixin
         "category",
     ]
     template_name = 'dashboard/partials/lead/lead_table_update_modal.html'  # noqa
-    success_message = 'Lead updated successfully'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -139,11 +138,20 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageMixin
         lead = get_object_or_404(Lead, pk=_id)
         return lead
 
-    def get_success_url(self):
-        return reverse_lazy('dashboard:leads')
+    def post(self, request, pk):
+        form = self.form(request.POST)
+        url = reverse_lazy('dashboard:leads')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Lead updated successfully')
+            return redirect(url)
+
+        messages.error(request, 'Lead not updated successfully')
+        return redirect(url)
 
 
-class LeadDeleteView(LoginRequiredMixin, generic.DeleteView, SuccessMessageMixin):  # noqa
+class LeadDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
     login_url = "users:login"
     template_name = 'dashboard/partials/lead/lead_table_delete_modal.html'  # noqa
     success_message = 'Lead deleted successfully'
@@ -260,12 +268,12 @@ class CategorySearchView(CategoryView):
         return render(request, self.template_name, context=context)
 
 
-class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageMixin):  # noqa
+class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
     login_url = "users:login"
     model = Category
+    form = CategoryForm
     fields = ["name", "description"]
     template_name = 'dashboard/partials/category/category_table_update_modal.html'  # noqa
-    success_message = 'Category updated successfully'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -281,11 +289,20 @@ class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView, SuccessMessageM
         category = get_object_or_404(Category, pk=_id)
         return category
 
-    def get_success_url(self):
-        return reverse_lazy('dashboard:leads_category')
+    def post(self, request, pk):
+        form = self.form(request.POST)
+        url = reverse_lazy('dashboard:leads_category')
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category updated successfully')
+            return redirect(url)
+
+        messages.error(request, 'Category not updated successfully')
+        return redirect(url)
 
 
-class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView, SuccessMessageMixin):  # noqa
+class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
     login_url = "users:login"
     template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
     success_message = 'Category deleted successfully'
@@ -308,7 +325,7 @@ class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView, SuccessMessageM
         return reverse_lazy('dashboard:leads_category')
 
 
-class CategoryExportView(LoginRequiredMixin, generic.View, SuccessMessageMixin):  # noqa
+class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
     login_url = "users:login"
 
     def __init__(self, *args, **kwargs):
