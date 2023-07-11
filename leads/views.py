@@ -83,7 +83,8 @@ class LeadSearchView(LeadView):
                 Q(last_name__icontains=search_term) |
                 Q(email__icontains=search_term) |
                 Q(age__icontains=search_term) |
-                Q(category__name__icontains=search_term),
+                Q(category__name__icontains=search_term) |
+                Q(agent__first_name__icontains=search_term),
             )
         ).order_by('-id')
 
@@ -121,6 +122,7 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
         "email",
         "age",
         "category",
+        "agent",
     ]
     template_name = 'dashboard/partials/lead/lead_table_update_modal.html'  # noqa
 
@@ -196,7 +198,8 @@ class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
                 "last_name": lead.last_name,
                 "email": lead.email,
                 "age": lead.age,
-                "category": lead.category
+                "category": lead.category,
+                "agent": lead.agent
             })
 
         messages.success(request, 'Lead export successfully')

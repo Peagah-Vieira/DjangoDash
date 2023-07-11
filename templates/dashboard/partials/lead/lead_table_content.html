@@ -7,6 +7,7 @@
                 <th scope="col" class="px-4 py-3">Email</th>
                 <th scope="col" class="px-4 py-3">Age</th>
                 <th scope="col" class="px-4 py-3">Category</th>
+                <th scope="col" class="px-4 py-3">Agent</th>
                 <th scope="col" class="px-4 py-3">Created At</th>
                 <th scope="col" class="px-4 py-3">Updated At</th>
                 <th scope="col" class="px-4 py-3">Actions</th>
@@ -20,6 +21,7 @@
                     <td class="px-4 py-3">{{ lead.email }}</td>
                     <td class="px-4 py-3">{{ lead.age }}</td>
                     <td class="px-4 py-3">{{ lead.category.name }}</td>
+                    <td class="px-4 py-3">{{ lead.agent.first_name }}</td>
                     <td class="px-4 py-3">{{ lead.created_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">{{ lead.updated_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">
