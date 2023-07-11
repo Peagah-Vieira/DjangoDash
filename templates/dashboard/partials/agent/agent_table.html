@@ -6,6 +6,7 @@
                 {% include "dashboard/partials/agent/agent_table_content.html" %}
                 {% include "dashboard/partials/agent/agent_table_nav.html" %}
             {% else %}
+                {% include "dashboard/partials/agent/agent_table_empty_state.html" %}
             {% endif %}
             {% include "dashboard/partials/agent/agent_table_create_modal.html" %}
         </div>
