@@ -27,6 +27,11 @@ urlpatterns = [
         name='leads_search'
     ),
     path(
+        'leads/export/',
+        leads_views.LeadExportView.as_view(),
+        name='leads_export'
+    ),
+    path(
         'leads/<int:pk>/update/',
         leads_views.LeadUpdateView.as_view(),
         name='leads_update'

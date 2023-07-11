@@ -174,6 +174,37 @@ class LeadDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
         return reverse_lazy('dashboard:leads')
 
 
+class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+    login_url = "users:login"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        leads = Lead.objects.all().order_by('-id')
+        data = []
+
+        for lead in leads:
+            data.append({
+                "first_name": lead.first_name,
+                "last_name": lead.last_name,
+                "email": lead.email,
+                "age": lead.age,
+                "category": lead.category
+            })
+
+        messages.success(request, 'Lead export successfully')
+        pandas.DataFrame(data).to_excel('leads.xlsx')
+
+        return redirect('dashboard:leads')
+
+
 class CategoryView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
     form = CategoryForm

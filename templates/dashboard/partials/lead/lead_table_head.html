@@ -54,14 +54,10 @@
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="actionsDropdownButton">
                     <li>
-                        <a href="#"
-                           class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mass Edit</a>
+                        <a href="{% url 'dashboard:leads_export' %}"
+                           class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</a>
                     </li>
                 </ul>
-                <div class="py-1">
-                    <a href="#"
-                       class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete all</a>
-                </div>
             </div>
         </div>
     </div>
