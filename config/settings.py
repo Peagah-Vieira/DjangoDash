@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'dashboard',  # new
     'leads',  # new
     'django_seed',  # new
-    'compressor',  # new
 ]
 
 MIDDLEWARE = [
@@ -133,14 +132,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Taiwind
-
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
-
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
 # SMTP Configuration
 
