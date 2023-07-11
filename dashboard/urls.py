@@ -71,4 +71,9 @@ urlpatterns = [
         leads_views.AgentView.as_view(),
         name='leads_agent'
     ),
+    path(
+        'leads/agent/search/',
+        leads_views.AgentSearchView.as_view(),
+        name='leads_agent_search'
+    ),
 ]
