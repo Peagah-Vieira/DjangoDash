@@ -23,7 +23,11 @@
                     <td class="px-4 py-3">{{ lead.created_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">{{ lead.updated_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">
-                        <a href="#" class="font-medium hover:underline">Remove</a>
+                        <a href="javascript:void(0)"
+                           class="font-medium hover:underline"
+                           data-url="{% url 'dashboard:leads_delete' pk=lead.id %}"
+                           data-target="#leadDeleteModal"
+                           data-modal-toggle="leadDeleteModal">Remove</a>
                         <a href="#" class="font-medium hover:underline">Edit</a>
                     </td>
                 </tr>

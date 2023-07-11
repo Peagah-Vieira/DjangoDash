@@ -112,6 +112,29 @@ class LeadSearchView(LeadView):
         return render(request, self.template_name, context=context)
 
 
+class LeadDeleteView(LoginRequiredMixin, generic.DeleteView, SuccessMessageMixin):  # noqa
+    login_url = "users:login"
+    template_name = 'dashboard/partials/lead/lead_table_delete_modal.html'  # noqa
+    success_message = 'Lead deleted successfully'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def setup(self, *args, **kwargs):
+        return super().setup(*args, **kwargs)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_object(self):
+        _id = int(self.kwargs.get('pk'))
+        lead = get_object_or_404(Lead, pk=_id)
+        return lead
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:leads')
+
+
 class CategoryView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
     form = CategoryForm
