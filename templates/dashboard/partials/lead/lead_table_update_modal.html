@@ -1,6 +1,6 @@
 <!-- Main modal -->
 {% load static %}
-<div id="leadUpdateModal"
+<div id="itemUpdateModal"
      tabindex="-1"
      aria-hidden="true"
      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -12,7 +12,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update Category</h3>
                 <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="leadUpdateModal">
+                        data-modal-toggle="itemUpdateModal">
                     <svg aria-hidden="true"
                          class="w-5 h-5"
                          fill="currentColor"
@@ -58,4 +58,4 @@
     </div>
 </div>
 <script type="text/javascript"
-        src="{% static 'js/lead_modal_update.js' %}"></script>
+        src="{% static 'js/modal_update.js' %}"></script>

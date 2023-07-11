@@ -20,13 +20,13 @@
                         <a href="javascript:void(0)"
                            class="font-medium hover:underline"
                            data-url="{% url 'dashboard:leads_category_delete' pk=category.id %}"
-                           data-target="#categoryDeleteModal"
-                           data-modal-toggle="categoryDeleteModal">Remove</a>
+                           data-target="#itemDeleteModal"
+                           data-modal-toggle="itemDeleteModal">Remove</a>
                         <a href="#"
                            class="font-medium hover:underline"
                            data-url="{% url 'dashboard:leads_category_update' pk=category.id %}"
-                           data-target="#categoryUpdateModal"
-                           data-modal-toggle="categoryUpdateModal">Edit</a>
+                           data-target="#itemUpdateModal"
+                           data-modal-toggle="itemUpdateModal">Edit</a>
                     </td>
                 </tr>
             {% endfor %}
