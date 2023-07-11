@@ -27,6 +27,11 @@ urlpatterns = [
         name='leads_search'
     ),
     path(
+        'leads/<int:pk>/update/',
+        leads_views.LeadUpdateView.as_view(),
+        name='leads_update'
+    ),
+    path(
         'leads/<int:pk>/delete/',
         leads_views.LeadDeleteView.as_view(),
         name='leads_delete'
