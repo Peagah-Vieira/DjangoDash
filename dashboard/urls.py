@@ -17,9 +17,9 @@ urlpatterns = [
         name='profile'
     ),
     path(
-        'leads/overview/',
+        'leads/',
         leads_views.LeadView.as_view(),
-        name='leads_overview'
+        name='leads'
     ),
     path(
         'leads/category/',

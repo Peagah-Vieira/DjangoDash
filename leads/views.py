@@ -17,7 +17,7 @@ import pandas
 
 class LeadView(LoginRequiredMixin, generic.View):
     login_url = "users:login"
-    template_name = 'dashboard/pages/leads_overview.html'
+    template_name = 'dashboard/pages/leads.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
