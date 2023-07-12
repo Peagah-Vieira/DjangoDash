@@ -11,6 +11,7 @@ A project for CRM made using Django and Tailwind.
 - Custom pagination
 - Custom search
 - Custom empty state
+- Custom Django-Admin
 - Excel export
 - Flash messages
 - Tailwind CSS
@@ -21,15 +22,41 @@ A project for CRM made using Django and Tailwind.
 
 ## Screenshots
 
-![LoginAndFlashMessage](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/8bd0c883-6c73-47e7-9609-80aab389b1eb)
+<details>
+  <summary>Login</summary>
+ 
+  ![LoginAndFlashMessage](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/8bd0c883-6c73-47e7-9609-80aab389b1eb)
+  
+</details>
 
-![Category](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/db0ce9f6-86a7-430d-96ad-be02917f3f3d)
 
-![DeleteConfirmation](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/ea147f8e-a173-4965-8a37-1e0c9cddb5b1)
+<details>
+  <summary>Table</summary>
+ 
+  ![Category](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/db0ce9f6-86a7-430d-96ad-be02917f3f3d)
+  
+</details>
 
-![CustomPagination](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/4d914fe2-6b47-49a3-81b8-a74e54734195)
+<details>
+  <summary>Delete Confirmation</summary>
+ 
+  ![DeleteConfirmation](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/ea147f8e-a173-4965-8a37-1e0c9cddb5b1)
+  
+</details>
 
-![ThemeSwitch](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/28dc5fec-293a-4ad9-a5bb-235ba825dd78)
+<details>
+  <summary>Custom Pagination</summary>
+
+  ![CustomPagination](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/4d914fe2-6b47-49a3-81b8-a74e54734195)
+  
+</details>
+
+<details>
+  <summary>Theme - Dark and Light</summary>
+ 
+  ![ThemeSwitch](https://github.com/Peagah-Vieira/Django-CRM/assets/105545343/28dc5fec-293a-4ad9-a5bb-235ba825dd78)
+  
+</details>
 
 ## Running locally
 
