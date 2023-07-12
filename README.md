@@ -114,7 +114,7 @@ source .venv/bin/activate
 
 # Windows
 py -3 -m venv .venv
- .venv\scripts\activate
+.venv\scripts\activate
 ```
 
 Update the pip
@@ -143,6 +143,18 @@ EMAIL_HOST_USER = 'email'
 EMAIL_HOST_PASSWORD = 'key'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Sqlite Configuration
+DATABASE_ENGINE = 'django.db.backends.sqlite3'
+DATABASE_NAME = './db.sqlite3'
+
+# PostgreSQL Configuration
+# DATABASE_ENGINE = 'django.db.backends.postgresql'
+# DATABASE_NAME = 
+# DATABASE_USER = 
+# DATABASE_PASSWORD = 
+# DATABASE_HOST = "127.0.0.1"
+# DATABASE_PORT = "5432"
 ```
 
 Compile the Tailwind CSS
@@ -160,7 +172,7 @@ py manage.py migrate
 Seed leads app
 
 ```bash
-py manage.py seed leads --number=100
+py manage.py seed leads --number=50
 ```
 
 Start the server
@@ -209,6 +221,10 @@ Selenium:
 Class Based Views:
 
 (https://docs.djangoproject.com/en/4.2/topics/class-based-views/)
+
+PostgreSQL - Naming Conventions:
+
+(https://www.geeksforgeeks.org/postgresql-naming-conventions/)
 
 ## Documentation
 
