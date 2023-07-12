@@ -12,7 +12,7 @@ class UserProfileTest(UsersBaseTest):
             '/html/body/div/div/div/form'
         )
 
-    def test_user_valid_data_can_login_successfully(self):
+    def test_dashboard_profile_return_correct_view(self):
         string_password = 'P@ssw0rd1'
 
         user = User.objects.create_user(
