@@ -134,16 +134,15 @@ Environment variables
 
 ```bash
 # Django Configuration
-# Django Configuration
-SECRET_KEY = 'GENERATE A KEY'
+# SECRET_KEY = 'GENERATE A KEY'
 
 # SMTP Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'CHANGE-ME'
-EMAIL_HOST_PASSWORD = 'CHANGE-ME'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'CHANGE-ME'
+# EMAIL_HOST_PASSWORD = 'CHANGE-ME'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 # Sqlite Configuration
 # DATABASE_ENGINE = 'django.db.backends.sqlite3'
