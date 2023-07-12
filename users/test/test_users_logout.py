@@ -9,7 +9,7 @@ class UsersLogoutTest(TestCase):
         self.client.login(username='my_user', password='my_pass')
 
         response = self.client.get(reverse('users:logout'))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 405)
 
     def test_user_can_logout_successfully(self):
         User.objects.create_user(username='my_user', password='my_pass')

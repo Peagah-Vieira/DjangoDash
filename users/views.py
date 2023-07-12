@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import Http404
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -113,9 +112,6 @@ class LogoutView(LoginRequiredMixin, generic.View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get(self, request):
-        raise Http404()
-
     def post(self, request):
         url = reverse_lazy('users:login')
         messages.success(request, 'Logged out successfully')
@@ -154,6 +150,3 @@ class UserProfileView(LoginRequiredMixin, generic.View):
 
     def get(self, request):
         return render(request, self.template_name)
-
-    def post(self, request):
-        ...

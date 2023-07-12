@@ -25,3 +25,12 @@ class UsersViewsTest(TestCase):
     def test_users_register_view_status_code(self):
         response = self.client.get(reverse('users:register'))
         self.assertEqual(response.status_code, 200)
+
+    def test_users_logout_view_status_code(self):
+        response = self.client.get(reverse('users:logout'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_users_profile_view(self):
+        profile_view = resolve(reverse('dashboard:profile'))
+        self.assertIs(profile_view.func.__name__,
+                      views.UserProfileView.as_view().__name__)
