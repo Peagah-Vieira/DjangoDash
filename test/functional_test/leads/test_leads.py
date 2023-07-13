@@ -245,3 +245,27 @@ class LeadsTest(LeadBaseTest):
         # Recebe a mensagem de delete
         self.assertIn('Lead deleted successfully',
                       self.browser.find_element(By.TAG_NAME, 'body').text)
+
+    def test_leads_export_returns_successfully(self):
+        # Criação de dados
+        self.data_create()
+
+        # Usuario faz login
+        self.user_login()
+
+        # Usuário abre a página de leads
+        self.browser.get(self.live_server_url + reverse('dashboard:leads'))
+
+        # Vê o botão de ações
+        action_button = self.browser.find_element(
+            By.XPATH, '//*[@id="actionsDropdownButton"]')
+        action_button.click()
+
+        # Vê o botão de exportar
+        export_button = self.browser.find_element(
+            By.XPATH, '//*[@id="actionsDropdown"]/ul/li/a')
+        export_button.click()
+
+        # Recebe a mensagem de exportar
+        self.assertIn('Lead export successfully',
+                      self.browser.find_element(By.TAG_NAME, 'body').text)
