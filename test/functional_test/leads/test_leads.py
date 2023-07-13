@@ -19,7 +19,7 @@ class UserProfileTest(UsersBaseTest):
             '/html/body/div[1]/main/section/div/div/div[3]/div/div/form'
         )
 
-    def test_dashboard_leads_return_correct_data(self):
+    def user_login(self):
         string_password = 'P@ssw0rd1'
 
         user = User.objects.create_user(
@@ -43,6 +43,9 @@ class UserProfileTest(UsersBaseTest):
         # Envia o formulário
         form.submit()
 
+    def test_dashboard_leads_return_correct_data(self):
+        self.user_login()
+
         # Usuário abre a página de leads
         self.browser.get(self.live_server_url + reverse('dashboard:leads'))
 
@@ -51,13 +54,6 @@ class UserProfileTest(UsersBaseTest):
                       self.browser.find_element(By.TAG_NAME, 'body').text)
 
     def test_dashboard_leads_create_successfuly_modal(self):
-        string_password = 'P@ssw0rd1'
-
-        user = User.objects.create_user(
-            username='my_user',
-            password=string_password,
-        )
-
         Category.objects.create(
             name="Lore",
             description="Impsum",
@@ -79,21 +75,8 @@ class UserProfileTest(UsersBaseTest):
             agent_id=1
         )
 
-        # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
-
-        # Usuário vê o formulário de login
-        form = self.get_form()
-
-        username_field = self.browser.find_element(By.NAME, 'username')
-        password_field = self.browser.find_element(By.NAME, 'password')
-
-        # Usuário digita seu usuário e senha
-        username_field.send_keys(user.username)
-        password_field.send_keys(string_password)
-
-        # Envia o formulário
-        form.submit()
+        # Usuario faz login
+        self.user_login()
 
         # Usuário abre a página de leads
         self.browser.get(self.live_server_url + reverse('dashboard:leads'))
@@ -124,28 +107,8 @@ class UserProfileTest(UsersBaseTest):
                       self.browser.find_element(By.TAG_NAME, 'body').text)
 
     def test_dashboard_leads_cant_create_successfuly_modal(self):
-        string_password = 'P@ssw0rd1'
-
-        user = User.objects.create_user(
-            username='my_user',
-            password=string_password,
-        )
-
-        # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
-
-        # Usuário vê o formulário de login
-        form = self.get_form()
-
-        username_field = self.browser.find_element(By.NAME, 'username')
-        password_field = self.browser.find_element(By.NAME, 'password')
-
-        # Usuário digita seu usuário e senha
-        username_field.send_keys(user.username)
-        password_field.send_keys(string_password)
-
-        # Envia o formulário
-        form.submit()
+        # Usuario faz login
+        self.user_login()
 
         # Usuário abre a página de leads
         self.browser.get(self.live_server_url + reverse('dashboard:leads'))
