@@ -1,3 +1,4 @@
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/Peagah-Vieira/Django-CRM/blob/main/README_BR.md)
 # Django Customer Relationship Management
 
 Um projeto para CRM feito usando Django e Tailwind.
