@@ -135,13 +135,10 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_object(self):
-        _id = int(self.kwargs.get('pk'))
-        lead = get_object_or_404(Lead, pk=_id)
-        return lead
-
     def post(self, request, pk):
-        form = self.form(request.POST)
+        lead = Lead.objects.get(id=pk)
+        form = LeadForm(instance=lead)
+        form = self.form(request.POST, instance=lead)
         url = reverse_lazy('dashboard:leads')
 
         if form.is_valid():
