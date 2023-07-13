@@ -184,7 +184,7 @@ DATABASES = {
 # DATABASE_URL = os.getenv('DATABASE_URL')
 # DATABASES = {
 #    'default': dj_database_url.config(),
-# } dj_database_ur
+# }
 ```
 
 Compile the Tailwind CSS
