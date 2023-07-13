@@ -22,11 +22,13 @@
                     <td class="px-4 py-3">{{ agent.updated_at|date:'Y-m-d' }}</td>
                     <td class="px-4 py-3">
                         <a href="javascript:void(0)"
+                        name="item_delete"
                         class="font-medium hover:underline"
                         data-url="{% url 'dashboard:leads_agent_delete' pk=agent.id %}"
                         data-target="#itemDeleteModal"
                         data-modal-toggle="itemDeleteModal">Remove</a>
                         <a href="#"
+                        name="item_update"
                         class="font-medium hover:underline"
                         data-url="{% url 'dashboard:leads_agent_update' pk=agent.id %}"
                         data-target="#itemUpdateModal"

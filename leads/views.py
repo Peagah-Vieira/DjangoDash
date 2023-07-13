@@ -416,15 +416,15 @@ class AgentView(LoginRequiredMixin, generic.View):
 
     def post(self, request):
         form = self.form(request.POST)
-        context = {'form': form}
         url = reverse_lazy('dashboard:leads_agent')
 
         if form.is_valid():
             form.save()
             messages.success(request, 'Agent created successfully')
             return redirect(url)
-
-        return render(request, self.template_name, context=context)
+        else:
+            messages.error(request, 'Agent not created successfully')
+            return redirect(url)
 
 
 class AgentSearchView(AgentView):

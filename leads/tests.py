@@ -50,3 +50,24 @@ class LeadsTest(TestCase):
             reverse('dashboard:leads_category_search') + '?q=')
 
         self.assertEqual(response.status_code, 404)
+
+    def test_agents_search_return_successfully(self):
+        self.user_login()
+
+        response = self.client.get(
+            reverse('dashboard:leads_agent_search') +
+            '?q=Teste'
+        )
+
+        self.assertIn(
+            'Try search again for a agent',
+            response.content.decode('utf-8')
+        )
+
+    def test_agents_search_raises_404_if_no_search_term(self):
+        self.user_login()
+
+        response = self.client.get(
+            reverse('dashboard:leads_agent_search') + '?q=')
+
+        self.assertEqual(response.status_code, 404)
