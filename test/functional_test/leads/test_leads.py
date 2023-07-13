@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from django.contrib.auth.models import User
 from leads.models import Lead, Agent, Category
 from django.urls import reverse
-from time import sleep
 
 
 class LeadsTest(LeadBaseTest):
@@ -76,8 +75,8 @@ class LeadsTest(LeadBaseTest):
         # Usuário abre a página de leads
         self.browser.get(self.live_server_url + reverse('dashboard:leads'))
 
-        # Vê o botão de criação de leads
-        self.assertIn('No results found.',
+        # Vê a mensagem de procurar por outras lead
+        self.assertIn('Try search again for a lead',
                       self.browser.find_element(By.TAG_NAME, 'body').text)
 
     def test_leads_create_returns_successfully(self):
@@ -98,8 +97,6 @@ class LeadsTest(LeadBaseTest):
             last_name="Vieira",
             email="teste@teste.com",
             age="20",
-            category_id=1,
-            agent_id=1
         )
 
         # Usuario faz login
