@@ -44,6 +44,7 @@ class UserProfileTest(UsersBaseTest):
         form.submit()
 
     def test_dashboard_leads_return_correct_data(self):
+        # Usuario faz login
         self.user_login()
 
         # Usuário abre a página de leads
