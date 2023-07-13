@@ -315,13 +315,10 @@ class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_object(self):
-        _id = int(self.kwargs.get('pk'))
-        category = get_object_or_404(Category, pk=_id)
-        return category
-
     def post(self, request, pk):
-        form = self.form(request.POST)
+        category = Category.objects.get(id=pk)
+        form = CategoryForm(instance=category)
+        form = self.form(request.POST, instance=category)
         url = reverse_lazy('dashboard:leads_category')
 
         if form.is_valid():
