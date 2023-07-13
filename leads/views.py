@@ -240,15 +240,15 @@ class CategoryView(LoginRequiredMixin, generic.View):
 
     def post(self, request):
         form = self.form(request.POST)
-        context = {'form': form}
         url = reverse_lazy('dashboard:leads_category')
 
         if form.is_valid():
             form.save()
             messages.success(request, 'Category created successfully')
             return redirect(url)
-
-        return render(request, self.template_name, context=context)
+        else:
+            messages.error(request, 'Category not created successfully')
+            return redirect(url)
 
 
 class CategorySearchView(CategoryView):
