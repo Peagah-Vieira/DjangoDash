@@ -50,7 +50,7 @@ class UserProfileTest(UsersBaseTest):
         self.assertIn('No results found.',
                       self.browser.find_element(By.TAG_NAME, 'body').text)
 
-    def test_dashboard_leads_create_modal(self):
+    def test_dashboard_leads_create_successfuly_modal(self):
         string_password = 'P@ssw0rd1'
 
         user = User.objects.create_user(
@@ -121,4 +121,46 @@ class UserProfileTest(UsersBaseTest):
 
         # Vê o botão de criação de leads
         self.assertIn('Lead created successfully',
+                      self.browser.find_element(By.TAG_NAME, 'body').text)
+
+    def test_dashboard_leads_cant_create_successfuly_modal(self):
+        string_password = 'P@ssw0rd1'
+
+        user = User.objects.create_user(
+            username='my_user',
+            password=string_password,
+        )
+
+        # Usuário abre a página de login
+        self.browser.get(self.live_server_url + reverse('users:login'))
+
+        # Usuário vê o formulário de login
+        form = self.get_form()
+
+        username_field = self.browser.find_element(By.NAME, 'username')
+        password_field = self.browser.find_element(By.NAME, 'password')
+
+        # Usuário digita seu usuário e senha
+        username_field.send_keys(user.username)
+        password_field.send_keys(string_password)
+
+        # Envia o formulário
+        form.submit()
+
+        # Usuário abre a página de leads
+        self.browser.get(self.live_server_url + reverse('dashboard:leads'))
+
+        # Vê o botão de criação de leads e clicka para abrir o modal
+        create_modal = self.browser.find_element(
+            By.XPATH,
+            '/html/body/div/main/section/div/div/div[1]/div[2]/button'
+        )
+        create_modal.click()
+
+        # Envia o formulário
+        modal_form = self.get_modal_form()
+        modal_form.submit()
+
+        # Vê o botão de criação de leads
+        self.assertIn('Lead not created successfully',
                       self.browser.find_element(By.TAG_NAME, 'body').text)
