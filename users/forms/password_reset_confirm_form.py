@@ -4,7 +4,7 @@ from django.contrib.auth.forms import SetPasswordForm
 
 class SetPasswordCustomForm(SetPasswordForm):
     new_password1 = forms.CharField(
-        label="New passworda",
+        label="New password",
         widget=forms.PasswordInput(attrs={
             'autocomplete': 'new-password',
             'placeholder': '••••••••',
