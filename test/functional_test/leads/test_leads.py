@@ -55,16 +55,16 @@ class LeadsTest(LeadBaseTest):
         )
 
         Agent.objects.create(
-            first_name="Pedro Henrique",
-            last_name="Vieira",
-            email="teste@teste.com",
-            phone_number="22998438864"
+            first_name="John Doe",
+            last_name="Ipsum",
+            email="test@test.com",
+            phone_number="99999999999"
         )
 
         Lead.objects.create(
-            first_name="Pedro Henrique",
-            last_name="Vieira",
-            email="teste@teste.com",
+            first_name="John Doe",
+            last_name="Ipsum",
+            email="test@test.com",
             age="20",
         )
 
@@ -86,16 +86,16 @@ class LeadsTest(LeadBaseTest):
         )
 
         Agent.objects.create(
-            first_name="Pedro Henrique",
-            last_name="Vieira",
-            email="teste@teste.com",
-            phone_number="22998438864"
+            first_name="John Doe",
+            last_name="Ipsum",
+            email="test@test.com",
+            phone_number="99999999999"
         )
 
         Lead.objects.create(
-            first_name="Pedro Henrique",
-            last_name="Vieira",
-            email="teste@teste.com",
+            first_name="John Doe",
+            last_name="Ipsum",
+            email="test@test.com",
             age="20",
         )
 
@@ -117,9 +117,9 @@ class LeadsTest(LeadBaseTest):
         last_name_field = self.browser.find_element(By.NAME, 'last_name')
         email_field = self.browser.find_element(By.NAME, 'email')
         age_field = self.browser.find_element(By.NAME, 'age')
-        first_name_field.send_keys('Pedro Henrique')
-        last_name_field.send_keys('Vieira')
-        email_field.send_keys('peagahvieira2003@gmail.com')
+        first_name_field.send_keys('John Doe')
+        last_name_field.send_keys('Ipsum')
+        email_field.send_keys('test@test.com')
         age_field.send_keys('20')
 
         # Envia o formulário
@@ -183,9 +183,9 @@ class LeadsTest(LeadBaseTest):
             By.XPATH,
             '/html/body/div[1]/main/section/div/div/div[4]/div/div/form/div/div[4]/input'
         )
-        first_name_field.send_keys('Pedro Henrique')
-        last_name_field.send_keys('Vieira')
-        email_field.send_keys('peagahvieira2003@gmail.com')
+        first_name_field.send_keys('John Doe')
+        last_name_field.send_keys('Ipsum')
+        email_field.send_keys('test@test.com')
         age_field.send_keys('20')
 
         # Envia o formulário

@@ -1,9 +1,8 @@
 from .base import CategoryBaseTest
 from selenium.webdriver.common.by import By
 from django.contrib.auth.models import User
-from leads.models import Lead, Agent, Category
+from leads.models import Category
 from django.urls import reverse
-from time import sleep
 
 
 class CategoriesTest(CategoryBaseTest):
@@ -132,11 +131,11 @@ class CategoriesTest(CategoryBaseTest):
         # Usuario faz login
         self.user_login()
 
-        # Usuário abre a página de category
+        # Usuário abre a página de categorias
         self.browser.get(self.live_server_url +
                          reverse('dashboard:leads_category'))
 
-        # Vê o botão de update de category e clicka para abrir o modal
+        # Vê o botão de update de categoria e clicka para abrir o modal
         update_modal = self.browser.find_element(By.NAME, 'item_update')
         update_modal.click()
 
@@ -168,11 +167,11 @@ class CategoriesTest(CategoryBaseTest):
         # Usuario faz login
         self.user_login()
 
-        # Usuário abre a página de category
+        # Usuário abre a página de categoria
         self.browser.get(self.live_server_url +
                          reverse('dashboard:leads_category'))
 
-        # Vê o botão de update de category e clicka para abrir o modal
+        # Vê o botão de update de categoria e clicka para abrir o modal
         update_modal = self.browser.find_element(By.NAME, 'item_update')
         update_modal.click()
 
