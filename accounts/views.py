@@ -19,7 +19,7 @@ from .forms import (
 
 class RegisterView(generic.CreateView):
     form = RegisterForm
-    template_name = 'users/register.html'
+    template_name = 'accounts/register.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,7 +43,7 @@ class RegisterView(generic.CreateView):
     def post(self, request):
         form = self.form(request.POST)
         context = {'form': form}
-        url = reverse_lazy('users:login')
+        url = reverse_lazy('accounts:login')
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -57,7 +57,7 @@ class RegisterView(generic.CreateView):
 
 class LoginView(generic.View):
     form = LoginForm
-    template_name = 'users/login.html'
+    template_name = 'accounts/login.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -80,7 +80,7 @@ class LoginView(generic.View):
 
     def post(self, request):
         form = self.form(request.POST)
-        url = reverse_lazy('users:login')
+        url = reverse_lazy('accounts:login')
 
         if form.is_valid():
             username = form.cleaned_data.get('username')
@@ -113,7 +113,7 @@ class LogoutView(LoginRequiredMixin, generic.View):
         return super().dispatch(*args, **kwargs)
 
     def post(self, request):
-        url = reverse_lazy('users:login')
+        url = reverse_lazy('accounts:login')
         messages.success(request, 'Logged out successfully')
         logout(request)
         return redirect(url)
@@ -121,22 +121,22 @@ class LogoutView(LoginRequiredMixin, generic.View):
 
 class PasswordResetCustomView(SuccessMessageMixin, PasswordResetView):
     form_class = PasswordResetCustomForm
-    email_template_name = 'users/mail/password_reset_email.html'
-    subject_template_name = 'users/mail/password_reset_subject.txt'
-    template_name = 'users/password_reset.html'
+    email_template_name = 'accounts/mail/password_reset_email.html'
+    subject_template_name = 'accounts/mail/password_reset_subject.txt'
+    template_name = 'accounts/password_reset.html'
     success_message = "We've emailed you instructions for setting your password"  # noqa
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('accounts:login')
 
 
 class PasswordResetConfirmCustomView(SuccessMessageMixin, PasswordResetConfirmView):  # noqa
     form_class = SetPasswordCustomForm
-    template_name = "users/password_reset_confirm.html"
+    template_name = "accounts/password_reset_confirm.html"
     success_message = "Your password has been set. You may go ahead and Login"  # noqa
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('accountsnts:login')
 
 
 class UserProfileView(LoginRequiredMixin, generic.View):
-    login_url = "users:login"
+    login_url = "accounts:login"
     template_name = 'dashboard/pages/dashboard_profile.html'
 
     def __init__(self, *args, **kwargs):

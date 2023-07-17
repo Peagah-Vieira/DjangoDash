@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-class UsersLoginForm(TestCase):
+class AccountsLoginForm(TestCase):
     def setUp(self, *args, **kwargs):
         self.form_data = {
             'username': 'User',
@@ -11,8 +11,8 @@ class UsersLoginForm(TestCase):
         }
         return super().setUp(*args, **kwargs)
 
-    def test_users_can_login_succesfully(self):
-        login_url = reverse('users:login')
+    def test_user_can_login_succesfully(self):
+        login_url = reverse('accounts:login')
         dashboard_url = reverse('dashboard:home')
 
         User.objects.create_user(
@@ -28,8 +28,8 @@ class UsersLoginForm(TestCase):
 
         self.assertRedirects(response, dashboard_url)
 
-    def test_users_cant_login_succesfully(self):
-        url = reverse('users:login')
+    def test_user_cant_login_succesfully(self):
+        url = reverse('accounts:login')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertIn('Invalid username or password.',

@@ -4,7 +4,7 @@ from django.views import generic
 
 
 class DashboardView(LoginRequiredMixin, generic.View):
-    login_url = "users:login"
+    login_url = "accounts:login"
     template_name = 'dashboard/pages/dashboard_home.html'
 
     def __init__(self, *args, **kwargs):

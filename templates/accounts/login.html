@@ -36,7 +36,7 @@
                                 <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
                             </div>
                         </div>
-                        <a href="{% url 'users:password_reset' %}"
+                        <a href="{% url 'accounts:password_reset' %}"
                            class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                     </div>
                     <button type="submit"
@@ -45,7 +45,7 @@
                     </button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                         Don’t have an account yet?
-                        <a href="{% url 'users:register' %}"
+                        <a href="{% url 'accounts:register' %}"
                            class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                     </p>
                 </form>

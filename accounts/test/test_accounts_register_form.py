@@ -1,11 +1,11 @@
 from django.test import TestCase
 from parameterized import parameterized
-from users.forms import RegisterForm
+from accounts.forms import RegisterForm
 from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-class UsersRegisterForm(TestCase):
+class AccountsRegisterForm(TestCase):
     @parameterized.expand([
         ('username', 'John Doe'),
         ('email', 'name@company.com'),
@@ -29,7 +29,7 @@ class UsersRegisterForm(TestCase):
         self.assertEqual(current_label, label)
 
 
-class UsersRegisterFormIntegrationTest(TestCase):
+class AccountsRegisterFormIntegrationTest(TestCase):
     def setUp(self, *args, **kwargs):
         self.form_data = {
             'username': 'user',
@@ -47,7 +47,7 @@ class UsersRegisterFormIntegrationTest(TestCase):
     ])
     def test_field_can_be_empty(self, field, message):
         self.form_data[field] = ''
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertIn(message, response.context['form'].errors.get(field))
@@ -56,7 +56,7 @@ class UsersRegisterFormIntegrationTest(TestCase):
         self.user = User.objects.create_user(
             username=self.form_data['username'])
 
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         self.client.post(url, data=self.form_data, follow=True)
         response = self.client.post(url, data=self.form_data, follow=True)
 
@@ -67,7 +67,7 @@ class UsersRegisterFormIntegrationTest(TestCase):
         self.user = User.objects.create_user(
             username=self.form_data['username'], email=self.form_data['email'])
 
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         self.client.post(url, data=self.form_data, follow=True)
         response = self.client.post(url, data=self.form_data, follow=True)
 
@@ -76,7 +76,7 @@ class UsersRegisterFormIntegrationTest(TestCase):
 
     def test_password_field_have_lower_upper_case_letters_and_numbers(self):
         self.form_data['password'] = 'abc123'
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = ('Password must have at least one uppercase letter, one lowercase letter and one number. The length should be at least 8 characters.')  # noqa
@@ -87,7 +87,7 @@ class UsersRegisterFormIntegrationTest(TestCase):
         self.form_data['password'] = '@A123abc123'
         self.form_data['confirm_password'] = '@A123abc1235'
 
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertIn('The password does not match.',
@@ -96,14 +96,14 @@ class UsersRegisterFormIntegrationTest(TestCase):
         self.form_data['password'] = '@A123abc123'
         self.form_data['confirm_password'] = '@A123abc123'
 
-        url = reverse('users:register')
+        url = reverse('accounts:register')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertNotIn('The password does not match.',
                          response.content.decode('utf-8'))
 
-    def test_author_created_can_login(self):
-        url = reverse('users:register')
+    def test_user_created_can_login(self):
+        url = reverse('accounts:register')
 
         self.form_data.update({
             'username': 'testuser',

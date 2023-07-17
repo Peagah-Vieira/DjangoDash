@@ -21,7 +21,7 @@ class CategoriesTest(CategoryBaseTest):
         )
 
         # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
 
         # Usuário vê o formulário de login
         form = self.get_form()

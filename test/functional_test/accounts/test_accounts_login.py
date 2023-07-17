@@ -1,10 +1,10 @@
-from .base import UsersBaseTest
+from .base import AccountsBaseTest
 from selenium.webdriver.common.by import By
 from django.contrib.auth.models import User
 from django.urls import reverse
 
 
-class UsersLoginTest(UsersBaseTest):
+class AccountsLoginTest(AccountsBaseTest):
     def get_form(self):
         return self.browser.find_element(
             By.XPATH,
@@ -20,7 +20,7 @@ class UsersLoginTest(UsersBaseTest):
         )
 
         # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
 
         # Usuário vê o formulário de login
         form = self.get_form()
@@ -41,7 +41,7 @@ class UsersLoginTest(UsersBaseTest):
 
     def test_form_login_invalid_credentials(self):
         # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
 
         # Usuário vê o formulário de login
         form = self.get_form()
@@ -64,7 +64,7 @@ class UsersLoginTest(UsersBaseTest):
 
     def test_form_login_invalid_username_or_password(self):
         # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
 
         # Usuário vê o formulário de login
         form = self.get_form()
@@ -94,7 +94,7 @@ class UsersLoginTest(UsersBaseTest):
         )
 
         # Usuário abre a página de login
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
 
         # Usuário vê o formulário de login
         form = self.get_form()
@@ -115,5 +115,5 @@ class UsersLoginTest(UsersBaseTest):
 
         # Usuário tenta acessar login novamente e
         # é redirecionado para o dashboard automaticamente
-        self.browser.get(self.live_server_url + reverse('users:login'))
+        self.browser.get(self.live_server_url + reverse('accounts:login'))
         self.assertEqual(response.status_code, 302)

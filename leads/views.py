@@ -15,7 +15,7 @@ import pandas
 
 
 class LeadView(LoginRequiredMixin, generic.View):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = LeadForm
     template_name = 'dashboard/pages/leads.html'
 
@@ -61,7 +61,7 @@ class LeadView(LoginRequiredMixin, generic.View):
 
 
 class LeadSearchView(LeadView):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = LeadForm
     template_name = 'dashboard/pages/leads.html'
 
@@ -113,7 +113,7 @@ class LeadSearchView(LeadView):
 
 
 class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     model = Lead
     form = LeadForm
     fields = [
@@ -151,7 +151,7 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
 
 
 class LeadDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     template_name = 'dashboard/partials/lead/lead_table_delete_modal.html'  # noqa
     success_message = 'Lead deleted successfully'
 
@@ -174,7 +174,7 @@ class LeadDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
 
 
 class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -206,7 +206,7 @@ class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
 
 
 class CategoryView(LoginRequiredMixin, generic.View):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
@@ -252,7 +252,7 @@ class CategoryView(LoginRequiredMixin, generic.View):
 
 
 class CategorySearchView(CategoryView):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = CategoryForm
     template_name = 'dashboard/pages/leads_category.html'
 
@@ -300,7 +300,7 @@ class CategorySearchView(CategoryView):
 
 
 class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     model = Category
     form = CategoryForm
     fields = ["name", "description"]
@@ -331,7 +331,7 @@ class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
 
 
 class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     template_name = 'dashboard/partials/category/category_table_delete_modal.html'  # noqa
     success_message = 'Category deleted successfully'
 
@@ -354,7 +354,7 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
 
 
 class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -382,7 +382,7 @@ class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
 
 
 class AgentView(LoginRequiredMixin, generic.View):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = AgentForm
     template_name = 'dashboard/pages/leads_agent.html'
 
@@ -428,7 +428,7 @@ class AgentView(LoginRequiredMixin, generic.View):
 
 
 class AgentSearchView(AgentView):
-    login_url = "users:login"
+    login_url = "accounts:login"
     form = AgentForm
     template_name = 'dashboard/pages/leads_agent.html'
 
@@ -478,7 +478,7 @@ class AgentSearchView(AgentView):
 
 
 class AgentDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     template_name = 'dashboard/partials/agent/agent_table_delete_modal.html'  # noqa
     success_message = 'Agent deleted successfully'
 
@@ -501,7 +501,7 @@ class AgentDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteVie
 
 
 class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
     model = Agent
     form = AgentForm
     fields = [
@@ -537,7 +537,7 @@ class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
 
 
 class AgentExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
-    login_url = "users:login"
+    login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

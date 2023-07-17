@@ -80,7 +80,7 @@
                            class="fa-solid fa-sun fa-xl hidden mx-auto mb-1 first-line:text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"></i>
                         <div class="text-sm pt-2 text-gray-900 dark:text-white">Theme</div>
                     </button>
-                    <form action="{% url 'users:logout' %}" method="POST">
+                    <form action="{% url 'accounts:logout' %}" method="POST">
                         {% csrf_token %}
                         <button type="submit"
                                 class="text-sm block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
@@ -118,7 +118,7 @@
                 <ul class="py-1 text-gray-700 dark:text-gray-300"
                     aria-labelledby="dropdown">
                     <li>
-                        <form action="{% url 'users:logout' %}" method="POST">
+                        <form action="{% url 'accounts:logout' %}" method="POST">
                             {% csrf_token %}
                             <button type="submit"
                                     class="block w-full text-start py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
