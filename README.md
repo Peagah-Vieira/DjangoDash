@@ -135,38 +135,10 @@ pip install -r requirements.txt
 npm install
 ```
 
-Change environment variables
+Copy the example env file and make the required configuration changes in the .env file
 
 ```bash
-# Django Configuration
-# SECRET_KEY = 'GENERATE A KEY'
-
-# SMTP Configuration
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'CHANGE-ME'
-# EMAIL_HOST_PASSWORD = 'CHANGE-ME'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-
-# PostgreSQL Local Configuration
-# DB_ENGINE = 'django.db.backends.postgresql'
-# POSTGRES_DB = "CHANGE-ME"
-# POSTGRES_USER = "CHANGE-ME"
-# POSTGRES_PASSWORD = "CHANGE-ME"
-# POSTGRES_HOST = "127.0.0.1"
-# POSTGRES_PORT = "5432"
-
-# PostgreSQL Docker Configuration
-# DB_ENGINE = "django.db.backends.postgresql"
-# POSTGRES_DB = "postgres"
-# POSTGRES_USER = "postgres"
-# POSTGRES_PASSWORD = "postgres"
-# POSTGRES_HOST = "db"
-# POSTGRES_PORT = 5432
-
-# Selenium Configuration
-# SELENIUM_HEADLESS = 1
+cp .env-example .env
 ```
 
 Configure settings.py
