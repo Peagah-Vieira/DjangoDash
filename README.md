@@ -3,7 +3,7 @@
 ![Django 4.2](https://img.shields.io/badge/Django-4.2-green.svg)
 # Django Customer Relationship Management
 
-A project for CRM made using Django and Tailwind. 
+A customer relationship management web application built using Django and Tailwind. 
 
 [Django-CRM-API](https://github.com/Peagah-Vieira/Django-CRM-API)
 
@@ -102,7 +102,7 @@ A project for CRM made using Django and Tailwind.
 Clone the project
 
 ```bash
-git clone  https://github.com/Peagah-Vieira/Django-CRM
+git clone https://github.com/Peagah-Vieira/Django-CRM-Web-Application
 ```
 
 Create a virtual environment

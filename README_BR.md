@@ -1,6 +1,6 @@
 # Django Customer Relationship Management
 
-Um projeto para CRM feito usando Django e Tailwind.
+Um aplicativo da Web de gerenciamento de relacionamento com o cliente criado usando Django e Tailwind.
 
 ## Funcionalidades
 
@@ -111,7 +111,7 @@ Um projeto para CRM feito usando Django e Tailwind.
 Clone o projeto
 
 ```bash
-git clone  https://github.com/Peagah-Vieira/Django-CRM
+git clone https://github.com/Peagah-Vieira/Django-CRM-Web-Application
 ```
 
 Crie um ambiente virtual
