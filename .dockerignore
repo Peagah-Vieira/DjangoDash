@@ -25,3 +25,4 @@ web/media
 web/static/CACHE
 stats
 Dockerfile
+__localcode/
