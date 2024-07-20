@@ -136,7 +136,7 @@ pip install -r requirements.txt
 npm install
 ```
 
-Copy the example env file and make the required configuration changes in the .env file
+Copy the .env-example file and make the required configuration changes in the .env file
 
 ```bash
 cp .env-example .env
@@ -166,7 +166,27 @@ Start the server
 py manage.py runserver
 ```
 
-## Running the tests
+## Running Locally(Docker)
+
+Clone the project
+
+```bash
+git clone https://github.com/Peagah-Vieira/Django-CRM-Web-Application
+```
+
+Copy the .env-example file and make the required configuration changes in the .env file
+
+```bash
+cp docker_dotenv_files/.env-example docker_dotenv_files/.env 
+```
+
+Build and start a Docker container with the services defined in a Docker Compose file
+
+```bash
+docker-compose up --build
+```
+
+## Running The Tests
 
 To run the tests, run the following command.
 
@@ -217,6 +237,10 @@ PostgreSQL - Naming Conventions:
 [Python](https://www.python.org)
 
 [Django](https://www.djangoproject.com)
+
+[PostgreSQL](https://www.postgresql.org/docs/)
+
+[Docker](https://docs.docker.com/)
 
 [Tailwind + Flowbite](https://flowbite.com/docs/getting-started/django/)
 
