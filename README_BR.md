@@ -5,33 +5,19 @@ Um aplicativo da Web de gerenciamento de relacionamento com o cliente criado usa
 ## Funcionalidades
 
 - Login personalizado e autenticação de registro
-
 - Redefinição de senha com e-mail
-
 - Painel com barra de navegação e barra lateral
-
 - Tabelas personalizadas
-
 - Paginação personalizada
-
 - Pesquisa personalizada
-
 - Estado vazio personalizado
-
 - Django-Admin personalizado
-
 - Exportação Excel
-
 - mensagens instantâneas
-
 - CSS Tailwind
-
 - Tema claro e escuro
-
 - Responsivo
-
 - Teste de unidade, teste de integração e teste funcional (Selenium)
-
 - Criar, ler, atualizar, excluir (CRUD)
 
 ## Capturas de tela
@@ -144,32 +130,10 @@ pip install -r requirements.txt
 npm install
 ```
 
-Copie o arquivo env de exemplo e faça as alterações de configuração necessárias no arquivo .env
+Copie o arquivo .env-example e faça as alterações de configuração necessárias no arquivo .env
 
 ```bash
 cp .env-example .env
-```
-
-Configure settings.py
-
-```bash
-# Local Configuration
-DATABASES = {
-  'default': {
-      'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
-      'NAME': os.getenv('POSTGRES_DB', BASE_DIR / './db.sqlite3'),
-      'USER': os.getenv('POSTGRES_USER', ''),
-      'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-      'HOST': os.getenv('POSTGRES_HOST', ''),
-      'PORT': os.getenv('POSTGRES_PORT', ''),
-  }
-}
-
-# Deploy - Render Configuration
-# DATABASE_URL = os.getenv('DATABASE_URL')
-# DATABASES = {
-#    'default': dj_database_url.config(),
-# }
 ```
 
 Compilar o Tailwind CSS
@@ -194,6 +158,26 @@ Iniciar o servidor
 
 ```bash
 py manage.py runserver
+```
+
+## Executando localmente (Docker)
+
+Clone o projeto
+
+```bash
+git clone https://github.com/Peagah-Vieira/Django-CRM-Web-Application
+```
+
+Copie o arquivo .env-example e faça as alterações de configuração necessárias no arquivo .env
+
+```bash
+cp docker_dotenv_files/.env-example docker_dotenv_files/.env 
+```
+
+Crie e inicie um contêiner Docker com os serviços definidos em um arquivo Docker Compose
+
+```bash
+docker-compose up --build
 ```
 
 ## Executando os testes
@@ -245,6 +229,10 @@ PostgreSQL - Convenções de nomenclatura:
 [Python](https://www.python.org)
 
 [Django](https://www.djangoproject.com)
+
+[PostgreSQL](https://www.postgresql.org/docs/)
+
+[Docker](https://docs.docker.com/)
 
 [Tailwind + Flowbite](https://flowbite.com/docs/getting-started/django/)
 
