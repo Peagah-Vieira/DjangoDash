@@ -263,6 +263,9 @@ class LeadsTest(LeadBaseTest):
             By.XPATH, '//*[@id="actionsDropdown"]/ul/li/a')
         export_button.click()
 
+        # Atualiza a página
+        self.browser.refresh()
+
         # Recebe a mensagem de exportar
-        self.assertIn('Lead export successfully',
+        self.assertIn('Leads export successfully',
                       self.browser.find_element(By.TAG_NAME, 'body').text)

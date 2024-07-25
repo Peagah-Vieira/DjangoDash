@@ -247,6 +247,9 @@ class AgentsTest(AgentBaseTest):
             By.XPATH, '//*[@id="actionsDropdown"]/ul/li/a')
         export_button.click()
 
+        # Atualiza a página
+        self.browser.refresh()
+
         # Recebe a mensagem de exportar bem sucedida
-        self.assertIn('Agent export successfully',
+        self.assertIn('Agents export successfully',
                       self.browser.find_element(By.TAG_NAME, 'body').text)

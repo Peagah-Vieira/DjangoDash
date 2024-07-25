@@ -232,6 +232,9 @@ class CategoriesTest(CategoryBaseTest):
             By.XPATH, '//*[@id="actionsDropdown"]/ul/li/a')
         export_button.click()
 
+        # Atualiza a página
+        self.browser.refresh()
+
         # Recebe a mensagem de exportar
-        self.assertIn('Category export successfully',
+        self.assertIn('Categories export successfully',
                       self.browser.find_element(By.TAG_NAME, 'body').text)
