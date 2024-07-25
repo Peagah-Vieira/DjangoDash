@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
@@ -173,7 +173,7 @@ class LeadDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
         return reverse_lazy('dashboard:leads')
 
 
-class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.View):  # noqa
     login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
@@ -199,10 +199,15 @@ class LeadExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView
                 "agent": lead.agent
             })
 
-        messages.success(request, 'Lead export successfully')
-        pandas.DataFrame(data).to_excel('leads.xlsx')
+        response = HttpResponse(content_type='application/xlsx')
+        response['Content-Disposition'] = f'attachment; filename="Leads.xlsx"'
+        
+        with pandas.ExcelWriter(response) as writer:
+            pandas.DataFrame(data).to_excel(writer, sheet_name='Leads')    
+            
+        messages.success(request, 'Leads export successfully')
 
-        return redirect('dashboard:leads')
+        return response
 
 
 class CategoryView(LoginRequiredMixin, generic.View):
@@ -353,7 +358,7 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
         return reverse_lazy('dashboard:leads_category')
 
 
-class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.View):  # noqa
     login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
@@ -375,10 +380,15 @@ class CategoryExportView(LoginRequiredMixin, SuccessMessageMixin, generic.Delete
                 'description': category.description
             })
 
-        messages.success(request, 'Category export successfully')
-        pandas.DataFrame(data).to_excel('categories.xlsx')
+        response = HttpResponse(content_type='application/xlsx')
+        response['Content-Disposition'] = f'attachment; filename="Categories.xlsx"'
+        
+        with pandas.ExcelWriter(response) as writer:
+            pandas.DataFrame(data).to_excel(writer, sheet_name='Categories')    
+            
+        messages.success(request, 'Categories export successfully')
 
-        return redirect('dashboard:leads_category')
+        return response
 
 
 class AgentView(LoginRequiredMixin, generic.View):
@@ -523,12 +533,12 @@ class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
 
     def post(self, request, pk):
         agent = Agent.objects.get(id=pk)
-        form = AgentForm(instance=agent)
-        form = self.form(request.POST, instance=agent)
+        base_form = AgentForm(instance=agent)
+        update_form = self.form(request.POST)
         url = reverse_lazy('dashboard:leads_agent')
 
-        if form.is_valid():
-            form.save()
+        if update_form.is_valid():
+            update_form.save()
             messages.success(request, 'Agent updated successfully')
             return redirect(url)
 
@@ -536,7 +546,7 @@ class AgentUpdateView(LoginRequiredMixin, generic.UpdateView):  # noqa
         return redirect(url)
 
 
-class AgentExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):  # noqa
+class AgentExportView(LoginRequiredMixin, SuccessMessageMixin, generic.View):  # noqa
     login_url = "accounts:login"
 
     def __init__(self, *args, **kwargs):
@@ -560,7 +570,12 @@ class AgentExportView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteVie
                 "phone_number": agent.phone_number,
             })
 
-        messages.success(request, 'Agent export successfully')
-        pandas.DataFrame(data).to_excel('agents.xlsx')
+        response = HttpResponse(content_type='application/xlsx')
+        response['Content-Disposition'] = f'attachment; filename="Agents.xlsx"'
+        
+        with pandas.ExcelWriter(response) as writer:
+            pandas.DataFrame(data).to_excel(writer, sheet_name='Agents')    
+            
+        messages.success(request, 'Agents export successfully')
 
-        return redirect('dashboard:leads_agent')
+        return response
