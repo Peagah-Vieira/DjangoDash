@@ -4,7 +4,7 @@
 
 # Django Customer Relationship Management
 
-A customer relationship management web application built using Django and Tailwind.
+Django-CMR-Web-Application is a CRM built with Django, featuring a sleek Tailwind CSS design. It offers custom authentication, responsive dashboards, and full CRUD functionality, providing an efficient way to manage customer data.
 
 [Django-CRM-API](https://github.com/Peagah-Vieira/Django-CRM-API)
 
