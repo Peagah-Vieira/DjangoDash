@@ -2,11 +2,11 @@
 [![Python 3.11](https://img.shields.io/badge/python-3.11-yellow.svg)](https://www.python.org/downloads/release/python-360/)
 ![Django 4.2](https://img.shields.io/badge/Django-4.2-green.svg)
 
-# Django Customer Relationship Management
+# DjangoDash
 
-Django-CMR-Web-Application is a CRM built with Django, featuring a sleek Tailwind CSS design. It offers custom authentication, responsive dashboards, and full CRUD functionality, providing an efficient way to manage customer data.
-
-[Django-CRM-API](https://github.com/Peagah-Vieira/Django-CRM-API)
+> DjangoDash is a CRM built with Django, featuring a sleek and modern design powered by Tailwind CSS. It provides custom authentication, responsive dashboards, and full CRUD functionality, offering an efficient and intuitive solution for managing customer data.
+> 
+#### This repo is functionality complete — PRs and issues welcome! Feel free to contact me in my discord server: [pea_gah](https://discord.gg/p9ekhtk44F)
 
 ## Functionalities
 
